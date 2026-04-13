@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading the Water — A Bass Angler's Guide to Lure Selection</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1612;
+    --paper: #f4f0e8;
+    --cream: #ebe5d8;
+    --accent: #2c5f3f;
+    --accent-light: #3a7a52;
+    --rust: #8b4513;
+    --muted: #6b6259;
+    --rule: #c4b9a8;
+    --link: #2c5f3f;
+    --link-hover: #1a3d28;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 18px; scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    position: relative;
+    padding: 6rem 2rem 4rem;
+    text-align: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 30% 0%, rgba(44,95,63,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 100%, rgba(139,69,19,0.05) 0%, transparent 50%),
+      var(--paper);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--rust), var(--accent));
+  }
+  .hero-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.4s;
+  }
+  .hero .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.6s;
+  }
+  .hero-rule {
+    width: 60px; height: 2px;
+    background: var(--accent);
+    margin: 0 auto;
+    opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
+  }
+  .wave-divider { display: block; width: 100%; height: 40px; margin: 0; }
+  .wave-divider path { fill: var(--cream); }
+  .article-wrap { background: var(--cream); }
+  article { max-width: 680px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+  article p {
+    margin-bottom: 1.4rem;
+    font-size: 1rem; font-weight: 300; text-align: left;
+    hanging-punctuation: first;
+  }
+  article p:first-of-type::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 3.8rem;
+    float: left; line-height: 0.8;
+    margin: 0.08em 0.12em 0 0;
+    color: var(--accent);
+  }
+  .lead { font-size: 1.1rem !important; font-weight: 400 !important; color: var(--ink); }
+  article h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 1.7rem;
+    color: var(--ink);
+    margin: 3rem 0 0.4rem; line-height: 1.25;
+  }
+  article h2::after {
+    content: ''; display: block;
+    width: 40px; height: 2px;
+    background: var(--rust);
+    margin-top: 0.5rem; margin-bottom: 1.2rem;
+  }
+  article a {
+    color: var(--link); text-decoration: none;
+    border-bottom: 1px solid rgba(44,95,63,0.3);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  article a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
+  .pull-quote {
+    position: relative;
+    margin: 2.5rem -1rem; padding: 1.8rem 2rem;
+    border-left: 3px solid var(--accent);
+    background: rgba(44,95,63,0.04);
+    border-radius: 0 6px 6px 0;
+  }
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.15rem;
+    font-weight: 400 !important;
+    color: var(--accent); line-height: 1.6;
+    margin-bottom: 0;
+  }
+
+  /* ---- Interactive Elements ---- */
+  .interactive-wrap {
+    max-width: 720px;
+    margin: 2rem auto 2.5rem;
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+  }
+  .interactive-wrap .iw-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .iw-row {
+    display: flex; align-items: center;
+    gap: 8px; margin-bottom: 10px; flex-wrap: wrap;
+  }
+  .iw-label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.78rem; color: var(--muted);
+    min-width: 76px;
+  }
+  .iw-btn {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.75rem; padding: 5px 11px;
+    border: 1px solid var(--rule);
+    background: transparent; color: var(--ink);
+    border-radius: 4px; cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .iw-btn:hover { border-color: var(--accent); }
+  .iw-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .iw-info {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.78rem; color: var(--muted);
+    line-height: 1.5; min-height: 36px;
+    margin-bottom: 10px;
+  }
+  #depth-slider {
+    flex: 1; max-width: 260px;
+    accent-color: var(--accent);
+  }
+  #ft-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; font-weight: 500;
+    min-width: 36px; color: var(--ink);
+  }
+  .swatch-bar {
+    position: absolute; top: 10px; right: 10px;
+    display: flex; gap: 6px; align-items: center;
+    background: rgba(0,0,0,0.45);
+    padding: 5px 9px; border-radius: 6px;
+  }
+  .swatch-bar .sw {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.5);
+  }
+  .swatch-bar .sw-lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: rgba(255,255,255,0.7);
+    text-align: center; margin-top: 1px;
+  }
+  .swatch-bar .arrow {
+    font-size: 12px; color: rgba(255,255,255,0.45);
+  }
+
+  /* ---- Lure Type Diagram ---- */
+  .lure-diagram {
+    max-width: 720px;
+    margin: 2rem auto 2.5rem;
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid var(--rule);
+  }
+  .lure-diagram .iw-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .lure-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 16px;
+  }
+  .lure-card {
+    text-align: center;
+    background: var(--cream);
+    border-radius: 6px;
+    padding: 14px 10px 12px;
+    border: 1px solid var(--rule);
+  }
+  .lure-card canvas {
+    display: block;
+    margin: 0 auto 8px;
+  }
+  .lure-card-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 0.85rem;
+    color: var(--ink); margin-bottom: 4px;
+  }
+  .lure-card-desc {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.68rem; color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ---- Works Cited ---- */
+  .works-cited {
+    max-width: 680px; margin: 0 auto;
+    padding: 2rem 2rem 5rem; background: var(--cream);
+  }
+  .works-cited h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 1.4rem;
+    color: var(--ink); margin-bottom: 0.3rem;
+  }
+  .works-cited h2::after {
+    content: ''; display: block;
+    width: 40px; height: 2px;
+    background: var(--rust);
+    margin-top: 0.5rem; margin-bottom: 1.2rem;
+  }
+  .works-cited ul { list-style: none; padding: 0; }
+  .works-cited li {
+    font-size: 0.82rem; line-height: 1.6;
+    color: var(--muted); margin-bottom: 0.8rem;
+    padding-left: 2em; text-indent: -2em;
+  }
+  .works-cited li a {
+    color: var(--link); text-decoration: none;
+    border-bottom: 1px solid rgba(44,95,63,0.25);
+    word-break: break-all;
+  }
+  .works-cited li a:hover { color: var(--link-hover); border-bottom-color: var(--link-hover); }
+
+  footer {
+    text-align: center; padding: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--rule);
+    background: var(--paper); border-top: 1px solid var(--rule);
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 4rem 1.5rem 3rem; }
+    article { padding: 2rem 1.2rem 3rem; }
+    .works-cited { padding: 2rem 1.2rem 4rem; }
+    .pull-quote { margin: 2rem 0; padding: 1.2rem 1.4rem; }
+    .interactive-wrap, .lure-diagram { margin-left: -0.2rem; margin-right: -0.2rem; padding: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-label">An Angler's Field Guide</div>
+  <h1>Reading the Water</h1>
+  <p class="subtitle">A Bass Angler's Guide to Lure Selection</p>
+  <div class="hero-rule"></div>
+</header>
+
+<svg class="wave-divider" viewBox="0 0 1440 40" preserveAspectRatio="none">
+  <path d="M0,20 C360,40 720,0 1080,20 C1260,30 1360,25 1440,20 L1440,40 L0,40 Z"/>
+</svg>
+
+<div class="article-wrap">
+<article>
+
+  <p class="lead">Every angler has stood at the tackle box, stared at rows of lures, and wondered which one to tie on. It feels like guesswork. And for beginners, it often is. But experienced bass anglers know that lure selection follows a logic rooted in how bass sense their environment. Three variables drive almost every good decision: water clarity, lure type, and retrieve techniques. Get those three right, and you give yourself a real chance.</p>
+
+  <h2>How Bass See Your Lure</h2>
+
+  <p>Bass are primarily sight predators. In water with eight or more feet of visibility, bass hunt and feed almost entirely by sight (<a href="https://www.slammingbass.com/bass-fishing-tips/lure-color-vs-water-clarity/" target="_blank" rel="noopener">Slamming Bass</a>). That changes everything about how you choose a lure color.</p>
+
+  <p>The most fundamental rule is to fish brightly colored baits in dingy or muddy water and use light, subtle colors in clear water (<a href="https://1source.basspro.com/news-tips/fishing-tackle/7368/simple-guide-choosing-lure-colors-bass" target="_blank" rel="noopener">Bourne, Bass Pro Shops 1Source</a>). The reasoning is straightforward. In clear water, bass have time to inspect your lure closely, and anything unnatural will get refused. In murky water, they can barely see it, so contrast matters more than realism. Dark and solid colors like black, blue, and dark purple create a strong silhouette that bass can detect more easily in low-visibility conditions (<a href="https://www.omniafishing.com/a/how-to-choose-the-right-fishing-lure-color-for-water-clarity" target="_blank" rel="noopener">Omnia Fishing</a>).</p>
+
+  <p>Water clarity is not the only factor. Depth affects color the same way clarity does: the deeper a lure runs, the less light reaches it, and colors fade. Reds and oranges disappear first; blues and greens hold their color longest at depth (<a href="https://krakenbass.com/bass-fishing-lure-color-selection-chart/" target="_blank" rel="noopener">Kraken Bass</a>). This is why a chartreuse crankbait that looks gaudy in your hand can be nearly invisible fifteen feet down on a sunny afternoon.</p>
+
+  <p>Both water clarity and light penetration matter, but water clarity is the dominating factor (<a href="https://www.bassresource.com/beginner/Choosing_Colors_selection.html" target="_blank" rel="noopener">Jones and Roland, BassResource</a>). A cloudy day with clear water still calls for natural colors. Bright sun over muddy water still calls for high-contrast lures. The water tells you more than the sky does.</p>
+
+  <div class="pull-quote">
+    <p>Color is not decoration. It is communication.</p>
+  </div>
+
+  <p>Forage matching adds another layer on top of clarity. If the main forage in a lake is crawfish, green pumpkin, brown, and orange are the colors bass expect to see. If bass are chasing shad, white, silver, and chrome mimic the flash of a baitfish (<a href="https://krakenbass.com/bass-fishing-lure-color-selection-chart/" target="_blank" rel="noopener">Kraken Bass</a>).</p>
+
+</article>
+
+<!-- ============ INTERACTIVE LURE DEPTH SIMULATOR ============ -->
+<div class="interactive-wrap" id="sim-wrap">
+  <div class="iw-title">Interactive &mdash; Lure color at depth</div>
+  <div class="iw-row">
+    <span class="iw-label">Water clarity</span>
+    <button class="iw-btn active" data-wc="clear">Clear (8+ ft)</button>
+    <button class="iw-btn" data-wc="stained">Stained (2–7 ft)</button>
+    <button class="iw-btn" data-wc="murky">Murky (0–2 ft)</button>
+  </div>
+  <div class="iw-row">
+    <span class="iw-label">Lure color</span>
+    <button class="iw-btn active" data-lc="0">Chartreuse</button>
+    <button class="iw-btn" data-lc="1">White/shad</button>
+    <button class="iw-btn" data-lc="2">Green pumpkin</button>
+    <button class="iw-btn" data-lc="3">Black/blue</button>
+    <button class="iw-btn" data-lc="4">Red/crawfish</button>
+  </div>
+  <div class="iw-row">
+    <span class="iw-label">Depth</span>
+    <input type="range" min="0" max="100" value="10" step="1" id="depth-slider" />
+    <span id="ft-label">2 ft</span>
+  </div>
+  <div class="iw-info" id="sim-info"></div>
+  <div style="position: relative;">
+    <canvas id="lake-cv" style="width:100%; border-radius:6px; display:block;"></canvas>
+    <div class="swatch-bar">
+      <div><div class="sw" id="sw-orig"></div><div class="sw-lbl">Surface</div></div>
+      <div class="arrow">&rarr;</div>
+      <div><div class="sw" id="sw-deep"></div><div class="sw-lbl">At depth</div></div>
+    </div>
+  </div>
+</div>
+
+<article style="padding-top:0;">
+
+  <h2>Choosing the Right Lure Type</h2>
+
+  <p>Once you have a color direction, you need to decide what kind of lure to throw. There are dozens of lure categories, but seven cover the vast majority of bass fishing situations: crankbaits, jigs, soft plastics, spinnerbaits, topwaters, jerkbaits, and swimbaits.</p>
+
+</article>
+
+<!-- ============ LURE TYPE DIAGRAMS ============ -->
+<div class="lure-diagram">
+  <div class="iw-title">Essential lure types for bass fishing</div>
+  <div class="lure-grid">
+    <div class="lure-card">
+      <canvas id="lure-crank" width="240" height="180"></canvas>
+      <div class="lure-card-name">Crankbait</div>
+      <div class="lure-card-desc">Hard-bodied search bait with a diving lip. Covers water fast at 2–20 ft.</div>
+    </div>
+    <div class="lure-card">
+      <canvas id="lure-jig" width="240" height="180"></canvas>
+      <div class="lure-card-name">Jig</div>
+      <div class="lure-card-desc">Weighted hook with a skirt. Mimics crawfish in heavy cover and structure.</div>
+    </div>
+    <div class="lure-card">
+      <canvas id="lure-worm" width="240" height="180"></canvas>
+      <div class="lure-card-name">Soft plastic (Texas rig)</div>
+      <div class="lure-card-desc">Flexible worm on a weighted hook. Weedless and versatile in any water.</div>
+    </div>
+    <div class="lure-card">
+      <canvas id="lure-spinner" width="240" height="180"></canvas>
+      <div class="lure-card-name">Spinnerbait</div>
+      <div class="lure-card-desc">Wire-arm lure with spinning blades. Flash and vibration for murky water.</div>
+    </div>
+    <div class="lure-card">
+      <canvas id="lure-topwater" width="240" height="180"></canvas>
+      <div class="lure-card-name">Topwater</div>
+      <div class="lure-card-desc">Fished on the surface. Creates splashing and popping to draw explosive strikes.</div>
+    </div>
+    <div class="lure-card">
+      <canvas id="lure-jerkbait" width="240" height="180"></canvas>
+      <div class="lure-card-name">Jerkbait</div>
+      <div class="lure-card-desc">Slim, suspending minnow. Twitched with pauses to trigger reaction bites.</div>
+    </div>
+    <div class="lure-card">
+      <canvas id="lure-swimbait" width="240" height="180"></canvas>
+      <div class="lure-card-name">Swimbait</div>
+      <div class="lure-card-desc">Realistic baitfish imitation with a paddletail. Natural swimming action.</div>
+    </div>
+  </div>
+</div>
+
+<article style="padding-top:0;">
+
+  <p><strong>Crankbaits</strong> are the workhorse search tool. Shallow squarebills cover the banks in two to eight feet of water. Deep-divers reach suspended fish at fifteen to twenty feet. In stained water, choose a crankbait with a rattle. In cold water, slow down and use a tighter wobble (<a href="https://fishingbooker.com/blog/best-largemouth-bass-lures/" target="_blank" rel="noopener">FishingBooker</a>). Crankbaits reward anglers who cover water efficiently.</p>
+
+  <p><strong>Jigs</strong> are arguably the most versatile lure ever made. They mimic crawfish, one of the largemouth bass's preferred food sources (<a href="https://fishingbooker.com/blog/best-largemouth-bass-lures/" target="_blank" rel="noopener">FishingBooker</a>). They can be flipped into heavy cover, dragged across the bottom, or swum through the water column. Jigs work all year, but summer and spring are when they tend to shine most (<a href="https://norrik.com/how-to-select-the-best-largemouth-bass-lure/" target="_blank" rel="noopener">Norrik</a>). They require more patience and feel than other lures, but the trade-off is access to places where bass hide that no crankbait can reach.</p>
+
+  <p><strong>Soft plastics</strong> are the great equalizer. They work well in a variety of water conditions: clear or muddy, with cover or without (<a href="https://www.takemefishing.org/freshwater-fishing/freshwater-bait-and-lures/bass-fishing-lures/" target="_blank" rel="noopener">Take Me Fishing</a>). The Texas-rigged worm remains one of the most effective bass setups ever developed, particularly in warm water when bass are relating to bottom structure. Green pumpkin is the consensus starting color because it works almost everywhere.</p>
+
+  <p><strong>Spinnerbaits</strong> are reaction lures built for flash and vibration. They work great in areas with lily pads, stumps, logs, and other hard structure because they are designed to deflect off cover (<a href="https://www.takemefishing.org/freshwater-fishing/freshwater-bait-and-lures/bass-fishing-lures/" target="_blank" rel="noopener">Take Me Fishing</a>). The spinning blade creates both visual attraction and a thumping pressure wave that bass can detect through their lateral line, which matters in low-visibility water where sight alone is not enough.</p>
+
+  <p><strong>Topwater lures</strong> are fished right on the surface and produce some of the most exciting strikes in bass fishing. Poppers use a cupped face to throw water and create a popping sound. Walking baits glide side to side in a zigzag pattern called "walking the dog." Topwaters are most effective in low-light conditions like early morning and late evening, or when bass are actively feeding near the surface (<a href="https://fishingbooker.com/blog/best-largemouth-bass-lures/" target="_blank" rel="noopener">FishingBooker</a>).</p>
+
+  <p><strong>Jerkbaits</strong> are slim, minnow-shaped hard baits with a small lip that gives them a subtle diving action. What makes them special is their ability to suspend at a set depth when you stop reeling. The technique is a rhythmic twitch-pause-twitch with the rod tip, and the pause is where strikes happen. Jerkbaits shine in cooler water when bass are less willing to chase fast-moving lures (<a href="https://bassforecast.com/bass-fishing-retrieval-techniques" target="_blank" rel="noopener">BassForecast</a>).</p>
+
+  <p><strong>Swimbaits</strong> are designed to look and move like real baitfish. Soft-bodied swimbaits have a paddletail that kicks side to side on a steady retrieve, creating a natural swimming action. They come in a wide range of sizes, from small three-inch models for finesse fishing to large eight-inch versions for targeting trophy bass. Swimbaits work best in clear to slightly stained water where bass are feeding on shad or other baitfish (<a href="https://www.wired2fish.com/hard-baits/types-of-fishing-lures" target="_blank" rel="noopener">Wired2Fish</a>).</p>
+
+  <h2>Retrieve Techniques</h2>
+
+  <p>You can have the right color and the right lure and still catch nothing because of how you work it. Retrieve is the most overlooked variable for beginners, and often the most important one once the fundamentals are in place.</p>
+
+  <p>A <strong>straight retrieve</strong> is the most basic approach: cast, reel, and let the lure's built-in action do the work (<a href="https://1source.basspro.com/news-tips/fishing-information/5071/4-basic-lure-retrieves-and-when-use-them" target="_blank" rel="noopener">Bass Pro Shops 1Source</a>). Crankbaits and spinnerbaits are designed for this. The key adjustment is speed. Fast retrieves trigger reaction strikes from aggressive fish. Slow retrieves give lethargic or cold-water bass time to commit.</p>
+
+  <p>The <strong>stop-and-go retrieve</strong> adds a pause to the straight retrieve. Suspending crankbaits and jerkbaits are ideal for this approach because they hold their depth when you stop reeling (<a href="https://bassforecast.com/bass-fishing-retrieval-techniques" target="_blank" rel="noopener">BassForecast</a>). The pause imitates a wounded baitfish that loses momentum, which is often when bass strike. If fish are following but not biting, adding a pause usually changes that.</p>
+
+  <p>For bottom-contact lures like jigs and soft plastics, the <strong>lift-and-drop</strong> is the core technique. You raise the rod slowly, lifting the lure off the bottom and pulling it forward, then lower the rod back and reel up the slack (<a href="https://www.wired2fish.com/fishing-tips/how-to-fish-retrieve-bass-fishing-lures" target="_blank" rel="noopener">Wired2Fish</a>). Most strikes happen on the fall, so slack line management is essential. A twitch in the line often means a fish has taken the lure before it hits bottom.</p>
+
+  <p>The most successful anglers do not get stuck on one retrieve. They adapt throughout the day, responding to how fish are behaving and where they are holding (<a href="https://www.sportfishingmag.com/how-to-retrieve-fishing-lures/" target="_blank" rel="noopener">Sport Fishing Magazine</a>). If the fish are telling you something is not working, change one variable at a time. Slow down first. Then adjust the pause. Then change the lure. That systematic approach teaches you the water faster than randomly switching lures ever will.</p>
+
+  <h2>Putting It Together</h2>
+
+  <p>Lure selection starts to feel intuitive once you understand what each decision is actually doing. Color talks to visibility. Lure type talks to depth, cover, and forage. Retrieve talks to fish mood and activity level. None of these decisions exist in isolation.</p>
+
+  <div class="pull-quote">
+    <p>The water tells you more than the sky does.</p>
+  </div>
+
+  <p>The interactive guide paired with this essay lets you work through these variables yourself. Set the water clarity, pick a scenario, and see which combinations make sense and why. The goal is not to give you a magic answer for every situation. It is to build the pattern recognition that experienced anglers develop over years on the water. The more you understand the reasoning, the faster that intuition develops.</p>
+
+</article>
+
+<section class="works-cited">
+  <h2>Works Cited</h2>
+  <ul>
+    <li>Bourne, Wade. "A Simple Guide to Choosing Lure Colors for Bass." <em>Bass Pro Shops 1Source</em>, 24 Apr. 2018, <a href="https://1source.basspro.com/news-tips/fishing-tackle/7368/simple-guide-choosing-lure-colors-bass" target="_blank" rel="noopener">1source.basspro.com</a>.</li>
+    <li>"Bass Fishing Lure Color Selection Chart." <em>Kraken Bass</em>, 1 July 2021, <a href="https://krakenbass.com/bass-fishing-lure-color-selection-chart/" target="_blank" rel="noopener">krakenbass.com</a>.</li>
+    <li>"Bass Fishing Lures." <em>Take Me Fishing</em>, <a href="https://www.takemefishing.org/freshwater-fishing/freshwater-bait-and-lures/bass-fishing-lures/" target="_blank" rel="noopener">takemefishing.org</a>.</li>
+    <li>"Best Largemouth Bass Lures: Top Picks and How to Use Them in 2026." <em>FishingBooker</em>, <a href="https://fishingbooker.com/blog/best-largemouth-bass-lures/" target="_blank" rel="noopener">fishingbooker.com</a>.</li>
+    <li>"4 Basic Lure Retrieves and When to Use Them." <em>Bass Pro Shops 1Source</em>, 3 Oct. 2013, <a href="https://1source.basspro.com/news-tips/fishing-information/5071/4-basic-lure-retrieves-and-when-use-them" target="_blank" rel="noopener">1source.basspro.com</a>.</li>
+    <li>"6 Bass Fishing Retrieval Techniques for Any Lures and Conditions." <em>BassForecast</em>, 30 Oct. 2025, <a href="https://bassforecast.com/bass-fishing-retrieval-techniques" target="_blank" rel="noopener">bassforecast.com</a>.</li>
+    <li>"How to Choose the Right Fishing Lure Color for the Current Water Clarity Conditions." <em>Omnia Fishing</em>, 22 July 2024, <a href="https://www.omniafishing.com/a/how-to-choose-the-right-fishing-lure-color-for-water-clarity" target="_blank" rel="noopener">omniafishing.com</a>.</li>
+    <li>"How to Fish (Retrieve) Bass Fishing Lures." <em>Wired2Fish</em>, 10 Apr. 2024, <a href="https://www.wired2fish.com/fishing-tips/how-to-fish-retrieve-bass-fishing-lures" target="_blank" rel="noopener">wired2fish.com</a>.</li>
+    <li>"How to Retrieve Fishing Lures to Catch More." <em>Sport Fishing Magazine</em>, 6 July 2023, <a href="https://www.sportfishingmag.com/how-to-retrieve-fishing-lures/" target="_blank" rel="noopener">sportfishingmag.com</a>.</li>
+    <li>"How to Select the Best Largemouth Bass Lure." <em>Norrik</em>, 5 July 2023, <a href="https://norrik.com/how-to-select-the-best-largemouth-bass-lure/" target="_blank" rel="noopener">norrik.com</a>.</li>
+    <li>Jones, Alton, and Zell Roland. "Color Perception." <em>BassResource</em>, 5 Nov. 2020, <a href="https://www.bassresource.com/beginner/Choosing_Colors_selection.html" target="_blank" rel="noopener">bassresource.com</a>.</li>
+    <li>"Lure Color vs. Water Clarity for Bass Fishing." <em>Slamming Bass</em>, 24 Mar. 2025, <a href="https://www.slammingbass.com/bass-fishing-tips/lure-color-vs-water-clarity/" target="_blank" rel="noopener">slammingbass.com</a>.</li>
+    <li>"Types of Fishing Lures." <em>Wired2Fish</em>, 7 Oct. 2025, <a href="https://www.wired2fish.com/hard-baits/types-of-fishing-lures" target="_blank" rel="noopener">wired2fish.com</a>.</li>
+  </ul>
+</section>
+</div>
+
+<footer>Reading the Water &middot; A Bass Angler's Guide</footer>
+
+<script>
+// ===== LURE DEPTH SIMULATOR =====
+(function(){
+  const cv = document.getElementById('lake-cv');
+  const cx = cv.getContext('2d');
+  const DPR = window.devicePixelRatio || 1;
+  let W, H;
+  function sz(){
+    const r = cv.parentElement.getBoundingClientRect();
+    W = r.width; H = Math.min(520, Math.max(380, W*0.7));
+    cv.width = W*DPR; cv.height = H*DPR;
+    cv.style.height = H+'px';
+    cx.setTransform(DPR,0,0,DPR,0,0);
+  }
+  sz();
+
+  let wt='clear', li=0, dp=10;
+  const MAX_DEPTH = 15;
+
+  const LURES = [
+    {name:'Chartreuse',r:205,g:225,b:20},
+    {name:'White/shad',r:232,g:236,b:240},
+    {name:'Green pumpkin',r:118,g:128,b:48},
+    {name:'Black/blue',r:22,g:22,b:52},
+    {name:'Red/crawfish',r:185,g:55,b:28}
+  ];
+  const ABS = {
+    clear:  {redH:15,oraH:25,yelH:40,grnH:80,bluH:150,tint:[45,120,165],mk:1.0,vr:8},
+    stained:{redH:6, oraH:10,yelH:16,grnH:32,bluH:60, tint:[55,100,65], mk:2.5,vr:4},
+    murky:  {redH:3, oraH:5, yelH:8, grnH:16,bluH:30, tint:[50,60,35],  mk:5.0,vr:1.5}
+  };
+
+  function absorb(r,g,b,ft,c){
+    const rA=1-Math.exp(-0.693*ft/c.redH);
+    const gA=1-Math.exp(-0.693*ft/c.grnH);
+    const bA=1-Math.exp(-0.693*ft/c.bluH);
+    const oF=1-Math.exp(-0.693*ft/c.oraH);
+    const yF=1-Math.exp(-0.693*ft/c.yelH);
+    let nr=r*(1-rA), ng=g*(1-gA), nb=b*(1-bA);
+    if(r>150&&g>150){const yc=Math.min(r,g)*yF*0.3;nr-=yc;ng-=yc*0.5;}
+    if(r>140&&g>40&&g<150){nr-=r*oF*0.2;ng-=g*oF*0.15;}
+    const ta=Math.exp(-0.04*c.mk*ft), wm=1-ta;
+    const fr=Math.max(0,Math.min(255,nr*ta+c.tint[0]*wm));
+    const fg=Math.max(0,Math.min(255,ng*ta+c.tint[1]*wm));
+    const fb=Math.max(0,Math.min(255,nb*ta+c.tint[2]*wm));
+    const bs=0.3+0.7*ta;
+    return{r:Math.round(fr*bs),g:Math.round(fg*bs),b:Math.round(fb*bs),a:Math.max(0.06,ta*0.7+0.3)};
+  }
+
+  const plants=[], rocks=[];
+  for(let i=0;i<22;i++) plants.push({x:Math.random(),h:0.10+Math.random()*0.22,lean:(Math.random()-0.5)*0.35,bl:3+Math.floor(Math.random()*5),bw:5+Math.random()*7});
+  for(let i=0;i<10;i++) rocks.push({x:Math.random(),w:8+Math.random()*28,h:5+Math.random()*14,s:0.1+Math.random()*0.2});
+
+  function drawHook(hx,hy,a){
+    const hc=`rgba(140,140,140,${(a*0.8).toFixed(2)})`;
+    cx.strokeStyle=hc; cx.lineWidth=1; cx.lineCap='round';
+    cx.beginPath();cx.moveTo(hx,hy);cx.lineTo(hx,hy+4);cx.stroke();
+    cx.beginPath();cx.arc(hx,hy+6,2,0,Math.PI*2);cx.stroke();
+    cx.beginPath();cx.moveTo(hx,hy+8);cx.lineTo(hx,hy+13);cx.stroke();
+    const angs=[-2.4,-1.0,0.4];
+    for(let i=0;i<3;i++){
+      const ang=angs[i];
+      cx.beginPath();cx.moveTo(hx,hy+13);
+      cx.bezierCurveTo(hx+Math.cos(ang)*6,hy+13+Math.sin(ang)*3+5,hx+Math.cos(ang)*8,hy+13+Math.sin(ang)*1+7,hx+Math.cos(ang)*4.5,hy+13+Math.sin(ang)*-1+5);
+      cx.stroke();
+      cx.beginPath();
+      cx.moveTo(hx+Math.cos(ang)*4.5,hy+13+Math.sin(ang)*-1+5);
+      cx.lineTo(hx+Math.cos(ang)*4.5+Math.cos(ang+1.3)*2,hy+13+Math.sin(ang)*-1+5+Math.sin(ang+1.3)*2-1.5);
+      cx.stroke();
+    }
+  }
+
+  function drawFish(x,y,sc,r,g,b,a){
+    cx.save(); cx.translate(x,y); cx.scale(sc,sc);
+    const bc=`rgba(${r},${g},${b},${a.toFixed(2)})`;
+    const dk=`rgba(${Math.max(0,r-40)},${Math.max(0,g-40)},${Math.max(0,b-40)},${a.toFixed(2)})`;
+    const lt=`rgba(${Math.min(255,r+30)},${Math.min(255,g+30)},${Math.min(255,b+30)},${(a*0.8).toFixed(2)})`;
+    const fn=`rgba(${Math.max(0,r-20)},${Math.max(0,g-20)},${Math.max(0,b-20)},${(a*0.7).toFixed(2)})`;
+
+    // Tail
+    cx.beginPath();cx.moveTo(-28,0);cx.lineTo(-44,-16);cx.bezierCurveTo(-40,-8,-38,-3,-32,0);cx.fillStyle=fn;cx.fill();
+    cx.beginPath();cx.moveTo(-28,0);cx.lineTo(-44,16);cx.bezierCurveTo(-40,8,-38,3,-32,0);cx.fillStyle=fn;cx.fill();
+    cx.beginPath();cx.moveTo(-28,0);cx.lineTo(-44,-16);cx.bezierCurveTo(-40,-8,-38,-3,-32,0);cx.moveTo(-28,0);cx.lineTo(-44,16);cx.bezierCurveTo(-40,8,-38,3,-32,0);cx.strokeStyle=dk;cx.lineWidth=0.8;cx.stroke();
+
+    // Dorsal
+    cx.beginPath();cx.moveTo(-10,-14);cx.bezierCurveTo(-6,-27,12,-25,16,-13);cx.bezierCurveTo(8,-14,0,-15,-10,-14);cx.fillStyle=fn;cx.fill();cx.strokeStyle=dk;cx.lineWidth=0.6;cx.stroke();
+
+    // Anal
+    cx.beginPath();cx.moveTo(-14,13);cx.bezierCurveTo(-18,22,-6,22,-4,14);cx.bezierCurveTo(-8,14,-12,14,-14,13);cx.fillStyle=fn;cx.fill();cx.strokeStyle=dk;cx.lineWidth=0.5;cx.stroke();
+
+    // Body
+    cx.beginPath();cx.moveTo(-28,0);cx.bezierCurveTo(-22,-15,-6,-19,8,-14);cx.bezierCurveTo(16,-12,24,-8,28,-3);cx.lineTo(32,0);cx.lineTo(28,3);cx.bezierCurveTo(24,8,16,13,8,15);cx.bezierCurveTo(-6,19,-22,15,-28,0);cx.closePath();cx.fillStyle=bc;cx.fill();cx.strokeStyle=dk;cx.lineWidth=1;cx.stroke();
+
+    // Belly
+    cx.beginPath();cx.moveTo(-20,3);cx.bezierCurveTo(-10,11,10,11,22,3);cx.bezierCurveTo(10,9,-10,9,-20,3);cx.fillStyle=lt;cx.fill();
+
+    // Pectoral
+    cx.beginPath();cx.moveTo(6,5);cx.bezierCurveTo(2,16,-8,18,-10,11);cx.bezierCurveTo(-6,9,2,7,6,5);cx.fillStyle=fn;cx.fill();
+
+    // Scales
+    for(let sy=-7;sy<=7;sy+=6) for(let sx=-18;sx<=10;sx+=7){cx.beginPath();cx.arc(sx,sy,3,0.2,Math.PI-0.2,false);cx.strokeStyle=`rgba(${Math.max(0,r-25)},${Math.max(0,g-25)},${Math.max(0,b-25)},${(a*0.15).toFixed(2)})`;cx.lineWidth=0.5;cx.stroke();}
+
+    // Gill
+    cx.beginPath();cx.moveTo(14,-9);cx.bezierCurveTo(12,-2,12,5,14,9);cx.strokeStyle=dk;cx.lineWidth=0.9;cx.stroke();
+
+    // Eye
+    cx.beginPath();cx.arc(20,-4,3.8,0,Math.PI*2);cx.fillStyle=`rgba(255,255,255,${(a*0.9).toFixed(2)})`;cx.fill();
+    cx.beginPath();cx.arc(20.5,-4,2,0,Math.PI*2);cx.fillStyle=`rgba(0,0,0,${(a*0.85).toFixed(2)})`;cx.fill();
+
+    // Mouth
+    cx.beginPath();cx.moveTo(32,0);cx.lineTo(28,1.5);cx.strokeStyle=dk;cx.lineWidth=0.7;cx.stroke();
+
+    // Line eye at nose
+    cx.beginPath();cx.arc(34,-1,2,0,Math.PI*2);cx.strokeStyle=`rgba(160,160,160,${(a*0.8).toFixed(2)})`;cx.lineWidth=1.2;cx.stroke();
+
+    // Front treble hook
+    drawHook(8,15,a);
+    // Rear treble hook
+    drawHook(-16,14,a);
+
+    cx.restore();
+    return {lx:x+34*sc, ly:y+(-1)*sc};
+  }
+
+  function draw(){
+    const c=ABS[wt], l=LURES[li];
+    const depthFt=Math.round(dp/100*MAX_DEPTH);
+    const surfY=H*0.06, botY=H*0.86, waterH=botY-surfY;
+    const lureY=surfY+waterH*(dp/100);
+    cx.clearRect(0,0,W,H);
+
+    cx.fillStyle='rgba(160,210,240,0.12)'; cx.fillRect(0,0,W,surfY);
+
+    for(let i=0;i<100;i++){
+      const t=i/100,y=surfY+t*waterH,h=waterH/100+1;
+      const sd=t*MAX_DEPTH, at=Math.exp(-0.04*c.mk*sd), df=1-at;
+      cx.fillStyle=`rgba(${Math.round(c.tint[0]*0.7+20*at)},${Math.round(c.tint[1]*0.7+40*at)},${Math.round(c.tint[2]*0.7+30*at)},${(0.18+df*0.75).toFixed(3)})`;
+      cx.fillRect(0,y,W,h);
+    }
+
+    const sedH=H-botY;
+    for(let i=0;i<8;i++){const t=i/8;cx.fillStyle=`rgba(${35-t*15},${30-t*10},${20-t*8},${0.6+t*0.4})`;cx.fillRect(0,botY+t*sedH,W,sedH/8+1);}
+
+    rocks.forEach(rk=>{cx.beginPath();cx.ellipse(rk.x*W,botY-rk.h*0.2,rk.w,rk.h,0,0,Math.PI*2);const sh=30+rk.s*50;cx.fillStyle=`rgba(${Math.round(sh)},${Math.round(sh-5)},${Math.round(sh-8)},0.65)`;cx.fill();});
+
+    plants.forEach(p=>{
+      const px=p.x*W,pH=p.h*H;
+      for(let bl=0;bl<p.bl;bl++){
+        const sp=(bl-(p.bl-1)/2)*p.bw, tl=p.lean+(bl%2===0?0.1:-0.1);
+        cx.beginPath();cx.moveTo(px+sp,botY);
+        cx.bezierCurveTo(px+sp+tl*pH*0.4,botY-pH*0.35,px+sp+tl*pH*0.7+(bl%3===0?10:-6),botY-pH*0.7,px+sp+tl*pH,botY-pH);
+        cx.strokeStyle=`rgba(20,${55+bl*10},15,${(0.35+(pH/H)*0.25).toFixed(2)})`;cx.lineWidth=2.2-bl*0.15;cx.stroke();
+        if(bl%2===0) for(let lf=0.25;lf<0.85;lf+=0.3){
+          const lx=px+sp+tl*pH*lf,ly=botY-pH*lf,side=lf>0.5?1:-1;
+          cx.beginPath();cx.moveTo(lx,ly);cx.bezierCurveTo(lx+side*12,ly-4,lx+side*14,ly+2,lx+side*4,ly+4);
+          cx.fillStyle=`rgba(18,${50+bl*8},12,${((0.35+(pH/H)*0.25)*0.6).toFixed(2)})`;cx.fill();
+        }
+      }
+    });
+
+    const murkBot=Math.min(0.65,c.mk*0.12);
+    cx.fillStyle=`rgba(${c.tint[0]},${c.tint[1]},${c.tint[2]},${murkBot.toFixed(2)})`;
+    cx.fillRect(0,botY-H*0.18,W,H*0.18+sedH);
+
+    const ab=absorb(l.r,l.g,l.b,depthFt,c);
+    const sc=Math.min(1,W/500)*0.9;
+    const nose=drawFish(W*0.5,lureY,sc,ab.r,ab.g,ab.b,ab.a);
+
+    cx.beginPath();cx.moveTo(nose.lx,0);cx.lineTo(nose.lx,nose.ly);cx.strokeStyle='rgba(180,180,180,0.4)';cx.lineWidth=0.8;cx.stroke();
+    cx.beginPath();cx.arc(nose.lx,nose.ly,1.5*sc,0,Math.PI*2);cx.fillStyle=`rgba(180,180,180,${(ab.a*0.6).toFixed(2)})`;cx.fill();
+
+    cx.font='11px sans-serif';cx.fillStyle='rgba(255,255,255,0.35)';cx.textAlign='left';
+    for(let d=0;d<=MAX_DEPTH;d+=5){
+      const my=surfY+(d/MAX_DEPTH)*waterH;
+      cx.fillText(d+' ft',8,my+4);
+      if(d>0){cx.beginPath();cx.setLineDash([3,6]);cx.moveTo(40,my);cx.lineTo(W-8,my);cx.strokeStyle='rgba(255,255,255,0.06)';cx.lineWidth=0.5;cx.stroke();cx.setLineDash([]);}
+    }
+
+    cx.strokeStyle='rgba(255,255,255,0.25)';cx.lineWidth=0.8;
+    for(let i=0;i<7;i++){const rx=W*0.08+i*W*0.14,ry=surfY+(i%2===0?-1:1);cx.beginPath();cx.moveTo(rx,ry);cx.bezierCurveTo(rx+15,ry-2,rx+35,ry+1.5,rx+50,ry);cx.stroke();}
+
+    document.getElementById('sw-orig').style.background=`rgb(${l.r},${l.g},${l.b})`;
+    document.getElementById('sw-deep').style.background=`rgb(${ab.r},${ab.g},${ab.b})`;
+
+    let tip='';
+    if(l.name==='Red/crawfish'&&depthFt>=12) tip='Red light is fully absorbed by 15 ft. This crawfish lure appears grey-brown — bass can\'t see its true color.';
+    else if(l.name==='Red/crawfish'&&depthFt>=6) tip='Red is fading fast. The crawfish pattern is losing its warm tones and shifting grey.';
+    else if(l.name==='Chartreuse'&&wt==='murky') tip='Chartreuse cuts through murky water — its yellow-green wavelength persists longer than red or orange.';
+    else if(l.name==='Chartreuse'&&depthFt>=10) tip='The yellow component of chartreuse is fading. At this depth it shifts toward blue-green.';
+    else if(l.name==='Black/blue'&&wt==='murky') tip='Dark colors create a strong silhouette in murky water. Bass detect the contrast against available light above.';
+    else if(l.name==='Black/blue'&&depthFt>8) tip='Black holds its silhouette at any depth — bass see it as a dark shape against the lighter water above.';
+    else if(l.name==='Green pumpkin'&&wt==='clear') tip='Green pumpkin in clear water — the classic combination. Natural color matches most forage and holds up well at depth.';
+    else if(l.name==='Green pumpkin'&&wt==='murky') tip='Green pumpkin can disappear in murky water. Consider switching to chartreuse or black for better visibility.';
+    else if(l.name==='White/shad'&&wt==='stained') tip='White creates strong contrast in stained water. It mimics the flash of a shad even with reduced visibility.';
+    else if(l.name==='White/shad'&&depthFt>=12) tip='White reflects whatever light is available. At depth it shifts blue-grey but remains more visible than warm colors.';
+    else if(wt==='clear'&&depthFt<4) tip='Shallow clear water — bass can see every detail. Natural, subtle colors look most realistic here.';
+    else if(wt==='murky'&&depthFt>=6) tip='Very low visibility. Bass rely on their lateral line more than sight. Lures with vibration or rattles help.';
+    else if(depthFt<3) tip='Near the surface, all colors are close to true. Choose based on forage match and water clarity.';
+    else if(depthFt>=14) tip='Almost all color is gone at this depth. Only blue wavelengths remain — everything looks blue-grey.';
+    else tip='Color shifts with depth as water absorbs longer wavelengths first: red, then orange, then yellow.';
+
+    document.getElementById('sim-info').textContent=`${l.name} at ${depthFt} ft in ${c.vr===8?'clear':c.vr===4?'stained':'murky'} water — ${tip}`;
+    document.getElementById('ft-label').textContent=depthFt+' ft';
+  }
+
+  document.querySelectorAll('[data-wc]').forEach(b=>b.addEventListener('click',function(){
+    wt=this.dataset.wc;
+    document.querySelectorAll('[data-wc]').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active'); draw();
+  }));
+  document.querySelectorAll('[data-lc]').forEach(b=>b.addEventListener('click',function(){
+    li=parseInt(this.dataset.lc);
+    document.querySelectorAll('[data-lc]').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active'); draw();
+  }));
+  document.getElementById('depth-slider').addEventListener('input',function(){dp=parseInt(this.value);draw();});
+  window.addEventListener('resize',function(){sz();draw();});
+  draw();
+})();
+
+// ===== LURE TYPE DIAGRAMS =====
+(function(){
+  const DPR = window.devicePixelRatio || 1;
+  const accent = '#2c5f3f';
+  const rust = '#8b4513';
+  const metal = '#888';
+
+  function setup(id){
+    const cv = document.getElementById(id);
+    const cx = cv.getContext('2d');
+    const w = cv.width, h = cv.height;
+    cv.style.width = '100%';
+    cv.style.height = 'auto';
+    const scale = DPR;
+    cv.width = w * scale;
+    cv.height = h * scale;
+    cx.scale(scale, scale);
+    return {cx, w, h};
+  }
+
+  function drawLabel(cx, x, y, text, color) {
+    cx.font = '9px "JetBrains Mono", monospace';
+    cx.fillStyle = color || '#6b6259';
+    cx.textAlign = 'center';
+    cx.fillText(text, x, y);
+  }
+
+  function drawArrow(cx, x1, y1, x2, y2) {
+    cx.beginPath(); cx.moveTo(x1,y1); cx.lineTo(x2,y2);
+    cx.strokeStyle = '#6b6259'; cx.lineWidth = 0.8; cx.setLineDash([2,3]); cx.stroke(); cx.setLineDash([]);
+    const ang = Math.atan2(y2-y1,x2-x1);
+    cx.beginPath(); cx.moveTo(x2,y2);
+    cx.lineTo(x2-5*Math.cos(ang-0.4),y2-5*Math.sin(ang-0.4));
+    cx.lineTo(x2-5*Math.cos(ang+0.4),y2-5*Math.sin(ang+0.4));
+    cx.closePath(); cx.fillStyle='#6b6259'; cx.fill();
+  }
+
+  // --- CRANKBAIT ---
+  (function(){
+    const {cx,w,h} = setup('lure-crank');
+    const bx=w/2, by=h/2-8;
+
+    // Line
+    cx.beginPath();cx.moveTo(bx+40,10);cx.lineTo(bx+40,by-24);cx.strokeStyle='rgba(160,160,160,0.5)';cx.lineWidth=0.8;cx.stroke();
+
+    // Diving lip
+    cx.beginPath();
+    cx.moveTo(bx+28,by+4);
+    cx.lineTo(bx+52,by+22);
+    cx.lineTo(bx+48,by+24);
+    cx.lineTo(bx+24,by+6);
+    cx.closePath();
+    cx.fillStyle='rgba(200,210,220,0.6)';
+    cx.fill();
+    cx.strokeStyle=metal; cx.lineWidth=0.8; cx.stroke();
+
+    // Body - fat oval
+    cx.beginPath();
+    cx.ellipse(bx,by,26,16,0,0,Math.PI*2);
+    cx.fillStyle='#c8d840'; cx.fill();
+    cx.strokeStyle='#8a9520'; cx.lineWidth=1.2; cx.stroke();
+
+    // Back stripe
+    cx.beginPath();
+    cx.ellipse(bx,by-6,22,6,0,Math.PI,0);
+    cx.fillStyle='rgba(50,80,30,0.3)'; cx.fill();
+
+    // Belly highlight
+    cx.beginPath();
+    cx.ellipse(bx,by+4,18,6,0,0,Math.PI);
+    cx.fillStyle='rgba(255,255,255,0.3)'; cx.fill();
+
+    // Eye
+    cx.beginPath();cx.arc(bx+16,by-4,3.5,0,Math.PI*2);cx.fillStyle='#fff';cx.fill();
+    cx.beginPath();cx.arc(bx+16.5,by-4,1.8,0,Math.PI*2);cx.fillStyle='#111';cx.fill();
+
+    // Line eye
+    cx.beginPath();cx.arc(bx+27,by-2,2,0,Math.PI*2);cx.strokeStyle=metal;cx.lineWidth=1;cx.stroke();
+
+    // Gill
+    cx.beginPath();cx.moveTo(bx+10,by-10);cx.bezierCurveTo(bx+8,by,bx+8,by+4,bx+10,by+10);cx.strokeStyle='#8a9520';cx.lineWidth=0.7;cx.stroke();
+
+    // Front treble
+    cx.strokeStyle=metal; cx.lineWidth=0.8; cx.lineCap='round';
+    cx.beginPath();cx.moveTo(bx+6,by+16);cx.lineTo(bx+6,by+22);cx.stroke();
+    cx.beginPath();cx.arc(bx+6,by+23.5,1.5,0,Math.PI*2);cx.stroke();
+    const prongs = [[-1.8],[0.3]];
+    for(const ang of [-1.8,0.3]){cx.beginPath();cx.moveTo(bx+6,by+25);cx.bezierCurveTo(bx+6+Math.cos(ang)*5,by+25+5,bx+6+Math.cos(ang)*6,by+25+6,bx+6+Math.cos(ang)*3.5,by+25+3.5);cx.stroke();}
+
+    // Rear treble
+    cx.beginPath();cx.moveTo(bx-14,by+16);cx.lineTo(bx-14,by+21);cx.stroke();
+    cx.beginPath();cx.arc(bx-14,by+22.5,1.5,0,Math.PI*2);cx.stroke();
+    for(const ang of [-1.8,0.3]){cx.beginPath();cx.moveTo(bx-14,by+24);cx.bezierCurveTo(bx-14+Math.cos(ang)*5,by+24+5,bx-14+Math.cos(ang)*6,by+24+6,bx-14+Math.cos(ang)*3.5,by+24+3.5);cx.stroke();}
+
+    // Labels
+    drawArrow(cx, bx+62,by+30, bx+50,by+22);
+    drawLabel(cx, bx+72, by+36, 'Diving lip');
+
+    drawArrow(cx, bx+56,10, bx+40,by-22);
+    drawLabel(cx, bx+68, 8, 'Line tie');
+
+    drawLabel(cx, bx, h-8, 'Depth: 2–20 ft  ·  Retrieve: straight, stop-and-go');
+  })();
+
+  // --- JIG ---
+  (function(){
+    const {cx,w,h} = setup('lure-jig');
+    const bx=w/2, by=h/2-12;
+
+    // Line
+    cx.beginPath();cx.moveTo(bx+2,8);cx.lineTo(bx+2,by-10);cx.strokeStyle='rgba(160,160,160,0.5)';cx.lineWidth=0.8;cx.stroke();
+
+    // Jig head (weighted ball)
+    cx.beginPath();cx.arc(bx,by,10,0,Math.PI*2);
+    cx.fillStyle='#333845'; cx.fill();
+    cx.strokeStyle='#222'; cx.lineWidth=1; cx.stroke();
+
+    // Eye on head
+    cx.beginPath();cx.arc(bx+4,by-3,2.5,0,Math.PI*2);cx.fillStyle='#c44';cx.fill();
+    cx.beginPath();cx.arc(bx+4.3,by-3,1.2,0,Math.PI*2);cx.fillStyle='#111';cx.fill();
+
+    // Line eye at top
+    cx.beginPath();cx.arc(bx+2,by-10,2,0,Math.PI*2);cx.strokeStyle=metal;cx.lineWidth=1;cx.stroke();
+
+    // Hook shank going down then curving
+    cx.beginPath();
+    cx.moveTo(bx,by+10);
+    cx.lineTo(bx,by+22);
+    cx.bezierCurveTo(bx+12,by+32,bx+14,by+24,bx+8,by+18);
+    cx.strokeStyle='#666';cx.lineWidth=1.2;cx.lineCap='round';cx.stroke();
+    // Barb
+    cx.beginPath();cx.moveTo(bx+8,by+18);cx.lineTo(bx+10,by+15);cx.stroke();
+
+    // Skirt (rubber strands)
+    for(let i=0;i<14;i++){
+      const angle = -0.8 + i * 0.12;
+      const len = 28 + Math.random()*12;
+      cx.beginPath();
+      cx.moveTo(bx + Math.cos(angle)*8, by+10);
+      cx.bezierCurveTo(
+        bx + Math.cos(angle)*16, by+10+len*0.4,
+        bx + Math.cos(angle)*20 + (Math.random()-0.5)*8, by+10+len*0.7,
+        bx + Math.cos(angle)*18 + (Math.random()-0.5)*10, by+10+len
+      );
+      const colors = ['#1a1a3a','#2a2a5a','#0f0f2f','#222244'];
+      cx.strokeStyle=colors[i%4]; cx.lineWidth=1.2; cx.stroke();
+    }
+
+    // Weed guard
+    cx.beginPath();cx.moveTo(bx-2,by+10);cx.bezierCurveTo(bx-4,by+24,bx+4,by+28,bx+6,by+20);cx.strokeStyle='rgba(100,100,80,0.4)';cx.lineWidth=0.7;cx.stroke();
+
+    drawArrow(cx, bx-34,by-6, bx-11,by-2);
+    drawLabel(cx, bx-50, by-8, 'Lead head');
+
+    drawArrow(cx, bx+50,by+18, bx+22,by+26);
+    drawLabel(cx, bx+60, by+14, 'Skirt');
+
+    drawLabel(cx, bx, h-8, 'Depth: bottom  ·  Retrieve: lift-and-drop, drag');
+  })();
+
+  // --- SOFT PLASTIC (Texas rig) ---
+  (function(){
+    const {cx,w,h} = setup('lure-worm');
+    const bx=w/2, by=h/2-8;
+
+    // Line
+    cx.beginPath();cx.moveTo(bx+18,6);cx.lineTo(bx+18,by-18);cx.strokeStyle='rgba(160,160,160,0.5)';cx.lineWidth=0.8;cx.stroke();
+
+    // Bullet weight
+    cx.beginPath();
+    cx.moveTo(bx+18,by-18);
+    cx.lineTo(bx+22,by-10);
+    cx.lineTo(bx+22,by-4);
+    cx.lineTo(bx+14,by-4);
+    cx.lineTo(bx+14,by-10);
+    cx.closePath();
+    cx.fillStyle='#777'; cx.fill();
+    cx.strokeStyle='#555'; cx.lineWidth=0.8; cx.stroke();
+
+    // Hook (embedded in worm, point hidden = weedless)
+    cx.beginPath();
+    cx.moveTo(bx+18,by-4);
+    cx.lineTo(bx+18,by+6);
+    cx.bezierCurveTo(bx+18,by+14,bx+8,by+16,bx+4,by+10);
+    cx.lineTo(bx+4,by+4);
+    cx.strokeStyle='#888'; cx.lineWidth=1; cx.lineCap='round'; cx.stroke();
+
+    // Worm body
+    cx.beginPath();
+    cx.moveTo(bx+20,by-4);
+    cx.bezierCurveTo(bx+16,by+2,bx+14,by+8,bx+8,by+12);
+    cx.bezierCurveTo(bx,by+18,bx-10,by+22,bx-20,by+30);
+    cx.bezierCurveTo(bx-28,by+36,bx-36,by+42,bx-40,by+48);
+    cx.bezierCurveTo(bx-42,by+52,bx-38,by+54,bx-34,by+50);
+    cx.bezierCurveTo(bx-28,by+44,bx-22,by+38,bx-14,by+32);
+    cx.bezierCurveTo(bx-6,by+26,bx+2,by+20,bx+6,by+14);
+    cx.bezierCurveTo(bx+12,by+10,bx+16,by+4,bx+20,by-2);
+    cx.closePath();
+    cx.fillStyle='#6a7830'; cx.fill();
+    cx.strokeStyle='#4a5820'; cx.lineWidth=0.8; cx.stroke();
+
+    // Ribbing
+    for(let t=0.15;t<0.85;t+=0.08){
+      const px=bx+20-40*t + Math.sin(t*6)*6;
+      const py=by-4+56*t + Math.cos(t*4)*4;
+      cx.beginPath();
+      cx.moveTo(px-4,py-2);cx.lineTo(px+4,py+2);
+      cx.strokeStyle='rgba(60,70,20,0.25)';cx.lineWidth=0.6;cx.stroke();
+    }
+
+    // Tail curl
+    cx.beginPath();
+    cx.moveTo(bx-40,by+48);
+    cx.bezierCurveTo(bx-46,by+56,bx-42,by+62,bx-36,by+58);
+    cx.strokeStyle='#6a7830';cx.lineWidth=3;cx.lineCap='round';cx.stroke();
+
+    drawArrow(cx, bx+44,by-14, bx+23,by-10);
+    drawLabel(cx, bx+56, by-16, 'Bullet weight');
+
+    drawArrow(cx, bx+44,by+10, bx+20,by+4);
+    drawLabel(cx, bx+60, by+8, 'Hook (hidden)');
+
+    drawLabel(cx, bx, h-4, 'Depth: any  ·  Retrieve: lift-and-drop, drag');
+  })();
+
+  // --- SPINNERBAIT ---
+  (function(){
+    const {cx,w,h} = setup('lure-spinner');
+    const bx=w/2, by=h/2+6;
+
+    // Upper wire arm
+    cx.beginPath();
+    cx.moveTo(bx-4,by);
+    cx.lineTo(bx-4,by-30);
+    cx.lineTo(bx+30,by-34);
+    cx.strokeStyle='#999'; cx.lineWidth=1.2; cx.lineCap='round'; cx.stroke();
+
+    // Small Colorado blade (inner)
+    cx.save();
+    cx.translate(bx+16,by-32);cx.rotate(-0.2);
+    cx.beginPath();cx.ellipse(0,0,6,10,0,0,Math.PI*2);
+    cx.fillStyle='rgba(200,210,220,0.7)';cx.fill();
+    cx.strokeStyle='#aaa';cx.lineWidth=0.8;cx.stroke();
+    // Shine
+    cx.beginPath();cx.ellipse(-1,-2,2,5,0.2,0,Math.PI*2);cx.fillStyle='rgba(255,255,255,0.4)';cx.fill();
+    cx.restore();
+
+    // Large willow blade (outer)
+    cx.save();
+    cx.translate(bx+32,by-34);cx.rotate(0.15);
+    cx.beginPath();cx.ellipse(0,0,5,14,0,0,Math.PI*2);
+    cx.fillStyle='rgba(210,215,225,0.75)';cx.fill();
+    cx.strokeStyle='#aaa';cx.lineWidth=0.8;cx.stroke();
+    cx.beginPath();cx.ellipse(-1,-3,2,7,0.1,0,Math.PI*2);cx.fillStyle='rgba(255,255,255,0.35)';cx.fill();
+    cx.restore();
+
+    // Swivel connectors
+    cx.beginPath();cx.arc(bx+16,by-30,1.5,0,Math.PI*2);cx.fillStyle='#888';cx.fill();
+    cx.beginPath();cx.arc(bx+30,by-34,1.5,0,Math.PI*2);cx.fillStyle='#888';cx.fill();
+
+    // Line eye at bend
+    cx.beginPath();cx.arc(bx-4,by-2,2.5,0,Math.PI*2);cx.strokeStyle=metal;cx.lineWidth=1;cx.stroke();
+
+    // Line
+    cx.beginPath();cx.moveTo(bx-4,6);cx.lineTo(bx-4,by-4);cx.strokeStyle='rgba(160,160,160,0.5)';cx.lineWidth=0.8;cx.stroke();
+
+    // Lower arm / head
+    cx.beginPath();cx.moveTo(bx-4,by);cx.lineTo(bx-4,by+6);cx.strokeStyle='#999';cx.lineWidth=1.2;cx.stroke();
+
+    // Lead head
+    cx.beginPath();cx.ellipse(bx-4,by+10,6,5,0,0,Math.PI*2);cx.fillStyle='#555';cx.fill();cx.strokeStyle='#333';cx.lineWidth=0.8;cx.stroke();
+
+    // Eye on head
+    cx.beginPath();cx.arc(bx-1,by+8,1.8,0,Math.PI*2);cx.fillStyle='#c44';cx.fill();
+    cx.beginPath();cx.arc(bx-0.7,by+8,0.9,0,Math.PI*2);cx.fillStyle='#111';cx.fill();
+
+    // Hook
+    cx.beginPath();
+    cx.moveTo(bx-4,by+15);cx.lineTo(bx-4,by+28);
+    cx.bezierCurveTo(bx+8,by+36,bx+10,by+28,bx+4,by+22);
+    cx.strokeStyle='#777';cx.lineWidth=1;cx.stroke();
+    cx.beginPath();cx.moveTo(bx+4,by+22);cx.lineTo(bx+6,by+19);cx.stroke();
+
+    // Skirt
+    for(let i=0;i<12;i++){
+      const angle=-0.6+i*0.1;
+      const len=20+Math.random()*10;
+      cx.beginPath();
+      cx.moveTo(bx-4+Math.cos(angle)*5,by+14);
+      cx.bezierCurveTo(bx-4+Math.cos(angle)*12,by+14+len*0.5,bx-4+Math.cos(angle)*14+(Math.random()-0.5)*6,by+14+len*0.8,bx-4+Math.cos(angle)*12+(Math.random()-0.5)*8,by+14+len);
+      const cols=['#eee','#ddd','#ccc','#e8e8d0'];
+      cx.strokeStyle=cols[i%4];cx.lineWidth=1;cx.stroke();
+    }
+
+    drawArrow(cx,bx+54,by-18,bx+34,by-30);
+    drawLabel(cx,bx+64,by-20,'Blades');
+
+    drawArrow(cx,bx-40,by-10,bx-7,by-2);
+    drawLabel(cx,bx-54,by-12,'Wire arm');
+
+    drawLabel(cx, bx, h-4, 'Depth: 1–15 ft  ·  Retrieve: straight, slow-roll');
+  })();
+
+  // --- TOPWATER (Popper) ---
+  (function(){
+    const {cx,w,h} = setup('lure-topwater');
+    const bx=w/2, by=h/2-2;
+
+    // Water surface line
+    cx.beginPath();cx.moveTo(10,by+14);cx.lineTo(w-10,by+14);
+    cx.strokeStyle='rgba(80,160,200,0.35)';cx.lineWidth=1;cx.setLineDash([4,4]);cx.stroke();cx.setLineDash([]);
+    cx.font='8px "JetBrains Mono", monospace';cx.fillStyle='rgba(80,160,200,0.5)';cx.textAlign='left';cx.fillText('surface',14,by+24);
+
+    // Splash lines
+    cx.strokeStyle='rgba(80,160,200,0.3)';cx.lineWidth=0.8;
+    for(let i=0;i<5;i++){
+      const sx=bx+30+i*6, sy=by+2-i*4;
+      cx.beginPath();cx.moveTo(sx,sy);cx.lineTo(sx+4+i*2,sy-3-i*2);cx.stroke();
+    }
+    for(let i=0;i<4;i++){
+      const sx=bx+32+i*5, sy=by+14+2;
+      cx.beginPath();cx.arc(sx+i*4,sy+i*2,1+i*0.5,0,Math.PI*2);cx.stroke();
+    }
+
+    // Line
+    cx.beginPath();cx.moveTo(bx+28,8);cx.lineTo(bx+28,by-14);cx.strokeStyle='rgba(160,160,160,0.5)';cx.lineWidth=0.8;cx.stroke();
+
+    // Popper body - slightly tapered cylinder shape
+    cx.beginPath();
+    cx.moveTo(bx+26,by-10);
+    cx.bezierCurveTo(bx+30,by-14,bx+32,by-14,bx+34,by-10);
+    cx.lineTo(bx+34,by+10);
+    cx.bezierCurveTo(bx+32,by+14,bx+30,by+14,bx+26,by+10);
+    cx.closePath();
+
+    // Cupped face (concave front)
+    cx.beginPath();
+    cx.moveTo(bx+26,by-12);
+    cx.bezierCurveTo(bx+30,by-6,bx+30,by+6,bx+26,by+12);
+    cx.bezierCurveTo(bx+22,by+8,bx+22,by-8,bx+26,by-12);
+
+    // Full body
+    cx.beginPath();
+    cx.moveTo(bx-24,by);
+    cx.bezierCurveTo(bx-24,by-10,bx-18,by-14,bx-8,by-14);
+    cx.lineTo(bx+18,by-12);
+    cx.bezierCurveTo(bx+24,by-12,bx+28,by-8,bx+28,by);
+    cx.bezierCurveTo(bx+28,by+8,bx+24,by+12,bx+18,by+12);
+    cx.lineTo(bx-8,by+14);
+    cx.bezierCurveTo(bx-18,by+14,bx-24,by+10,bx-24,by);
+    cx.closePath();
+    cx.fillStyle='#e8e0c8';cx.fill();
+    cx.strokeStyle='#a89878';cx.lineWidth=1.2;cx.stroke();
+
+    // Cupped mouth (concave face at front)
+    cx.beginPath();
+    cx.moveTo(bx+28,by-8);
+    cx.bezierCurveTo(bx+22,by-4,bx+22,by+4,bx+28,by+8);
+    cx.strokeStyle='#a89878';cx.lineWidth=1;cx.stroke();
+    cx.beginPath();
+    cx.moveTo(bx+28,by-8);
+    cx.bezierCurveTo(bx+24,by-3,bx+24,by+3,bx+28,by+8);
+    cx.fillStyle='rgba(80,60,40,0.2)';cx.fill();
+
+    // Back stripe
+    cx.beginPath();
+    cx.moveTo(bx-20,by-12);cx.bezierCurveTo(bx-4,by-16,bx+12,by-14,bx+24,by-10);
+    cx.lineTo(bx+24,by-8);cx.bezierCurveTo(bx+12,by-12,bx-4,by-14,bx-20,by-10);
+    cx.fillStyle='rgba(44,95,63,0.3)';cx.fill();
+
+    // Eye
+    cx.beginPath();cx.arc(bx+18,by-4,3,0,Math.PI*2);cx.fillStyle='#fff';cx.fill();
+    cx.beginPath();cx.arc(bx+18.5,by-4,1.5,0,Math.PI*2);cx.fillStyle='#111';cx.fill();
+
+    // Line eye
+    cx.beginPath();cx.arc(bx+28,by-2,1.8,0,Math.PI*2);cx.strokeStyle=metal;cx.lineWidth=1;cx.stroke();
+
+    // Tail feather/skirt
+    for(let i=0;i<6;i++){
+      cx.beginPath();
+      cx.moveTo(bx-24,by-2+i*1.2);
+      cx.bezierCurveTo(bx-32,by-6+i*3,bx-38,by-4+i*3.5,bx-42,by-2+i*4);
+      cx.strokeStyle=`rgba(200,60,40,${0.4+i*0.05})`;cx.lineWidth=0.8;cx.stroke();
+    }
+
+    // Front treble
+    cx.strokeStyle=metal;cx.lineWidth=0.8;cx.lineCap='round';
+    cx.beginPath();cx.moveTo(bx+10,by+12);cx.lineTo(bx+10,by+18);cx.stroke();
+    cx.beginPath();cx.arc(bx+10,by+19.5,1.5,0,Math.PI*2);cx.stroke();
+    for(const ang of [-1.8,0.3]){cx.beginPath();cx.moveTo(bx+10,by+21);cx.bezierCurveTo(bx+10+Math.cos(ang)*5,by+21+5,bx+10+Math.cos(ang)*6,by+21+6,bx+10+Math.cos(ang)*3.5,by+21+3.5);cx.stroke();}
+
+    // Rear treble
+    cx.beginPath();cx.moveTo(bx-10,by+14);cx.lineTo(bx-10,by+19);cx.stroke();
+    cx.beginPath();cx.arc(bx-10,by+20.5,1.5,0,Math.PI*2);cx.stroke();
+    for(const ang of [-1.8,0.3]){cx.beginPath();cx.moveTo(bx-10,by+22);cx.bezierCurveTo(bx-10+Math.cos(ang)*5,by+22+5,bx-10+Math.cos(ang)*6,by+22+6,bx-10+Math.cos(ang)*3.5,by+22+3.5);cx.stroke();}
+
+    drawArrow(cx,bx+50,by-16,bx+30,by-4);
+    drawLabel(cx,bx+62,by-18,'Cupped face');
+
+    drawArrow(cx,bx-52,by-10,bx-36,by+2);
+    drawLabel(cx,bx-62,by-14,'Feather skirt');
+
+    drawLabel(cx, bx, h-4, 'Depth: surface  ·  Retrieve: pop, walk-the-dog');
+  })();
+
+  // --- JERKBAIT ---
+  (function(){
+    const {cx,w,h} = setup('lure-jerkbait');
+    const bx=w/2, by=h/2-4;
+
+    // Line
+    cx.beginPath();cx.moveTo(bx+46,8);cx.lineTo(bx+46,by-12);cx.strokeStyle='rgba(160,160,160,0.5)';cx.lineWidth=0.8;cx.stroke();
+
+    // Small diving lip
+    cx.beginPath();
+    cx.moveTo(bx+38,by+4);
+    cx.lineTo(bx+50,by+14);
+    cx.lineTo(bx+47,by+16);
+    cx.lineTo(bx+35,by+6);
+    cx.closePath();
+    cx.fillStyle='rgba(200,210,220,0.5)';cx.fill();
+    cx.strokeStyle=metal;cx.lineWidth=0.7;cx.stroke();
+
+    // Slim minnow body - long and thin
+    cx.beginPath();
+    cx.moveTo(bx-38,by);
+    cx.bezierCurveTo(bx-38,by-6,bx-30,by-10,bx-16,by-10);
+    cx.lineTo(bx+28,by-8);
+    cx.bezierCurveTo(bx+36,by-8,bx+42,by-5,bx+42,by);
+    cx.bezierCurveTo(bx+42,by+5,bx+36,by+8,bx+28,by+8);
+    cx.lineTo(bx-16,by+10);
+    cx.bezierCurveTo(bx-30,by+10,bx-38,by+6,bx-38,by);
+    cx.closePath();
+    cx.fillStyle='#c8d8e8';cx.fill();
+    cx.strokeStyle='#8898a8';cx.lineWidth=1;cx.stroke();
+
+    // Back shading
+    cx.beginPath();
+    cx.moveTo(bx-32,by-8);
+    cx.bezierCurveTo(bx-10,by-12,bx+20,by-10,bx+38,by-6);
+    cx.lineTo(bx+38,by-4);
+    cx.bezierCurveTo(bx+20,by-8,bx-10,by-10,bx-32,by-6);
+    cx.fillStyle='rgba(40,60,80,0.25)';cx.fill();
+
+    // Lateral line
+    cx.beginPath();
+    cx.moveTo(bx-30,by);cx.lineTo(bx+34,by-1);
+    cx.strokeStyle='rgba(180,200,220,0.5)';cx.lineWidth=0.6;cx.stroke();
+
+    // Belly flash
+    cx.beginPath();
+    cx.moveTo(bx-28,by+4);
+    cx.bezierCurveTo(bx-8,by+8,bx+16,by+7,bx+34,by+3);
+    cx.lineTo(bx+34,by+5);
+    cx.bezierCurveTo(bx+16,by+9,bx-8,by+10,bx-28,by+6);
+    cx.fillStyle='rgba(255,255,255,0.35)';cx.fill();
+
+    // Tail fin
+    cx.beginPath();
+    cx.moveTo(bx-38,by);
+    cx.lineTo(bx-50,by-10);cx.lineTo(bx-46,by-2);
+    cx.moveTo(bx-38,by);
+    cx.lineTo(bx-50,by+10);cx.lineTo(bx-46,by+2);
+    cx.fillStyle='rgba(160,180,200,0.5)';cx.fill();
+    cx.strokeStyle='#8898a8';cx.lineWidth=0.7;cx.stroke();
+
+    // Dorsal fin (small)
+    cx.beginPath();
+    cx.moveTo(bx-6,by-10);cx.bezierCurveTo(bx-2,by-18,bx+8,by-16,bx+10,by-9);
+    cx.bezierCurveTo(bx+4,by-10,bx,by-10,bx-6,by-10);
+    cx.fillStyle='rgba(160,180,200,0.4)';cx.fill();
+    cx.strokeStyle='#8898a8';cx.lineWidth=0.5;cx.stroke();
+
+    // Eye
+    cx.beginPath();cx.arc(bx+30,by-2,2.8,0,Math.PI*2);cx.fillStyle='#fff';cx.fill();
+    cx.beginPath();cx.arc(bx+30.5,by-2,1.4,0,Math.PI*2);cx.fillStyle='#111';cx.fill();
+
+    // Gill mark
+    cx.beginPath();cx.moveTo(bx+24,by-6);cx.bezierCurveTo(bx+22,by,bx+22,by+2,bx+24,by+6);cx.strokeStyle='#8898a8';cx.lineWidth=0.7;cx.stroke();
+
+    // Line eye
+    cx.beginPath();cx.arc(bx+42,by-2,1.8,0,Math.PI*2);cx.strokeStyle=metal;cx.lineWidth=1;cx.stroke();
+
+    // Three treble hooks spread along the slim body
+    cx.strokeStyle=metal;cx.lineWidth=0.7;cx.lineCap='round';
+
+    // Front hook
+    cx.beginPath();cx.moveTo(bx+18,by+8);cx.lineTo(bx+18,by+14);cx.stroke();
+    cx.beginPath();cx.arc(bx+18,by+15.5,1.3,0,Math.PI*2);cx.stroke();
+    for(const ang of [-1.8,0.3]){cx.beginPath();cx.moveTo(bx+18,by+17);cx.bezierCurveTo(bx+18+Math.cos(ang)*4,by+17+4,bx+18+Math.cos(ang)*5,by+17+5,bx+18+Math.cos(ang)*3,by+17+3);cx.stroke();}
+
+    // Middle hook
+    cx.beginPath();cx.moveTo(bx,by+10);cx.lineTo(bx,by+15);cx.stroke();
+    cx.beginPath();cx.arc(bx,by+16.5,1.3,0,Math.PI*2);cx.stroke();
+    for(const ang of [-1.8,0.3]){cx.beginPath();cx.moveTo(bx,by+18);cx.bezierCurveTo(bx+Math.cos(ang)*4,by+18+4,bx+Math.cos(ang)*5,by+18+5,bx+Math.cos(ang)*3,by+18+3);cx.stroke();}
+
+    // Rear hook
+    cx.beginPath();cx.moveTo(bx-18,by+10);cx.lineTo(bx-18,by+15);cx.stroke();
+    cx.beginPath();cx.arc(bx-18,by+16.5,1.3,0,Math.PI*2);cx.stroke();
+    for(const ang of [-1.8,0.3]){cx.beginPath();cx.moveTo(bx-18,by+18);cx.bezierCurveTo(bx-18+Math.cos(ang)*4,by+18+4,bx-18+Math.cos(ang)*5,by+18+5,bx-18+Math.cos(ang)*3,by+18+3);cx.stroke();}
+
+    drawArrow(cx,bx+58,by+16,bx+48,by+12);
+    drawLabel(cx,bx+68,by+14,'Short lip');
+
+    drawArrow(cx,bx-56,by-14,bx-44,by-6);
+    drawLabel(cx,bx-68,by-18,'Slim profile');
+
+    drawLabel(cx, bx, h-4, 'Depth: 2–8 ft  ·  Retrieve: twitch-pause-twitch');
+  })();
+
+  // --- SWIMBAIT ---
+  (function(){
+    const {cx,w,h} = setup('lure-swimbait');
+    const bx=w/2, by=h/2-2;
+
+    // Line
+    cx.beginPath();cx.moveTo(bx+36,6);cx.lineTo(bx+36,by-18);cx.strokeStyle='rgba(160,160,160,0.5)';cx.lineWidth=0.8;cx.stroke();
+
+    // Paddletail
+    cx.beginPath();
+    cx.moveTo(bx-32,by+2);
+    cx.bezierCurveTo(bx-38,by+8,bx-44,by+16,bx-50,by+18);
+    cx.bezierCurveTo(bx-54,by+19,bx-56,by+16,bx-52,by+12);
+    cx.bezierCurveTo(bx-48,by+8,bx-42,by+4,bx-36,by+2);
+    cx.fillStyle='rgba(180,200,180,0.6)';cx.fill();
+    cx.strokeStyle='#6a8060';cx.lineWidth=0.8;cx.stroke();
+
+    // Soft body - realistic baitfish shape
+    cx.beginPath();
+    cx.moveTo(bx-32,by);
+    cx.bezierCurveTo(bx-32,by-8,bx-24,by-14,bx-10,by-14);
+    cx.lineTo(bx+20,by-12);
+    cx.bezierCurveTo(bx+30,by-12,bx+36,by-8,bx+38,by-2);
+    cx.lineTo(bx+38,by+2);
+    cx.bezierCurveTo(bx+36,by+8,bx+30,by+12,bx+20,by+12);
+    cx.lineTo(bx-10,by+14);
+    cx.bezierCurveTo(bx-24,by+14,bx-32,by+8,bx-32,by);
+    cx.closePath();
+    cx.fillStyle='#8aa87a';cx.fill();
+    cx.strokeStyle='#5a7850';cx.lineWidth=1;cx.stroke();
+
+    // Dark back
+    cx.beginPath();
+    cx.moveTo(bx-26,by-12);
+    cx.bezierCurveTo(bx-8,by-16,bx+14,by-14,bx+34,by-8);
+    cx.lineTo(bx+34,by-6);
+    cx.bezierCurveTo(bx+14,by-12,bx-8,by-14,bx-26,by-10);
+    cx.fillStyle='rgba(40,60,30,0.3)';cx.fill();
+
+    // Belly
+    cx.beginPath();
+    cx.moveTo(bx-24,by+6);
+    cx.bezierCurveTo(bx-4,by+12,bx+18,by+11,bx+32,by+5);
+    cx.lineTo(bx+32,by+7);
+    cx.bezierCurveTo(bx+18,by+13,bx-4,by+14,bx-24,by+8);
+    cx.fillStyle='rgba(240,235,220,0.4)';cx.fill();
+
+    // Segment lines (soft plastic segments)
+    for(let s=-22;s<=26;s+=8){
+      cx.beginPath();
+      const segX=bx+s;
+      const topY=by-12+(Math.abs(s)/40)*4;
+      const botY=by+12-(Math.abs(s)/40)*4;
+      cx.moveTo(segX,topY+2);cx.lineTo(segX,botY-2);
+      cx.strokeStyle='rgba(70,90,60,0.15)';cx.lineWidth=0.6;cx.stroke();
+    }
+
+    // Eye
+    cx.beginPath();cx.arc(bx+28,by-3,3,0,Math.PI*2);cx.fillStyle='#fff';cx.fill();
+    cx.beginPath();cx.arc(bx+28.5,by-3,1.5,0,Math.PI*2);cx.fillStyle='#111';cx.fill();
+    // Red ring around eye
+    cx.beginPath();cx.arc(bx+28,by-3,3,0,Math.PI*2);cx.strokeStyle='rgba(180,60,40,0.3)';cx.lineWidth=0.6;cx.stroke();
+
+    // Mouth
+    cx.beginPath();cx.moveTo(bx+38,by);cx.lineTo(bx+34,by+1);cx.strokeStyle='#5a7850';cx.lineWidth=0.6;cx.stroke();
+
+    // Gill
+    cx.beginPath();cx.moveTo(bx+22,by-8);cx.bezierCurveTo(bx+20,by-2,bx+20,by+4,bx+22,by+8);cx.strokeStyle='rgba(80,100,70,0.4)';cx.lineWidth=0.7;cx.stroke();
+
+    // Dorsal fin
+    cx.beginPath();
+    cx.moveTo(bx-4,by-14);cx.bezierCurveTo(bx,by-22,bx+12,by-20,bx+14,by-12);
+    cx.bezierCurveTo(bx+8,by-13,bx+2,by-14,bx-4,by-14);
+    cx.fillStyle='rgba(100,130,90,0.4)';cx.fill();
+    cx.strokeStyle='#5a7850';cx.lineWidth=0.5;cx.stroke();
+
+    // Line tie / jighead
+    cx.beginPath();cx.arc(bx+36,by-4,1.8,0,Math.PI*2);cx.strokeStyle=metal;cx.lineWidth=1;cx.stroke();
+
+    // Exposed hook point at belly
+    cx.strokeStyle='#888';cx.lineWidth=0.9;cx.lineCap='round';
+    cx.beginPath();
+    cx.moveTo(bx+12,by+12);cx.lineTo(bx+12,by+20);
+    cx.bezierCurveTo(bx+20,by+28,bx+22,by+22,bx+16,by+16);
+    cx.stroke();
+    cx.beginPath();cx.moveTo(bx+16,by+16);cx.lineTo(bx+18,by+13);cx.stroke();
+
+    drawArrow(cx,bx-56,by+16,bx-48,by+14);
+    drawLabel(cx,bx-66,by+12,'Paddle tail');
+
+    drawArrow(cx,bx+50,by+20,bx+22,by+22);
+    drawLabel(cx,bx+60,by+18,'Exposed hook');
+
+    drawLabel(cx, bx, h-4, 'Depth: 1–15 ft  ·  Retrieve: steady swim');
+  })();
+})();
+</script>
+
+</body>
+</html>
