@@ -19,7 +19,7 @@
     --link-hover: #1a3d28;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { font-size: 18px; scroll-behavior: smooth; }
+  html { font-size: clamp(15px, 1.25vw, 19px); scroll-behavior: smooth; }
   body {
     background: var(--paper);
     color: var(--ink);
@@ -29,7 +29,7 @@
   }
   .hero {
     position: relative;
-    padding: 6rem 2rem 4rem;
+    padding: clamp(4rem, 9vw, 9rem) clamp(1.5rem, 6vw, 6rem) clamp(3rem, 5vw, 5rem);
     text-align: center;
     overflow: hidden;
     background:
@@ -76,10 +76,55 @@
     margin: 0 auto;
     opacity: 0; animation: fadeUp 0.8s ease forwards 0.8s;
   }
+  /* ---- Section Nav ---- */
+  .section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(244, 240, 232, 0.92);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.55rem clamp(1rem, 3vw, 2rem);
+  }
+  .section-nav-inner {
+    max-width: clamp(600px, 92vw, 1200px);
+    margin: 0 auto;
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    justify-content: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .section-nav-inner::-webkit-scrollbar { display: none; }
+  .section-nav a {
+    flex: 0 0 auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.45rem 0.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.22s ease, color 0.22s ease;
+  }
+  .section-nav a:hover {
+    color: var(--ink);
+    background: rgba(44, 95, 63, 0.08);
+  }
+  .section-nav a.active {
+    color: var(--paper);
+    background: var(--accent);
+  }
+  html { scroll-padding-top: 64px; }
+
   .wave-divider { display: block; width: 100%; height: 40px; margin: 0; }
   .wave-divider path { fill: var(--cream); }
   .article-wrap { background: var(--cream); }
-  article { max-width: 680px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+  article { max-width: clamp(600px, 86vw, 960px); margin: 0 auto; padding: clamp(2rem, 4vw, 4rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 5vw, 5rem); }
   article p {
     margin-bottom: 1.4rem;
     font-size: 1rem; font-weight: 300; text-align: left;
@@ -91,6 +136,15 @@
     float: left; line-height: 0.8;
     margin: 0.08em 0.12em 0 0;
     color: var(--accent);
+  }
+  .pull-quote p::first-letter {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    font-family: inherit !important;
+    float: none !important;
+    line-height: inherit !important;
+    margin: 0 !important;
+    color: inherit !important;
   }
   .lead { font-size: 1.1rem !important; font-weight: 400 !important; color: var(--ink); }
   article h2 {
@@ -128,11 +182,11 @@
 
   /* ---- Interactive Elements ---- */
   .interactive-wrap {
-    max-width: 720px;
+    max-width: clamp(640px, 90vw, 1200px);
     margin: 2rem auto 2.5rem;
     background: var(--paper);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: clamp(1rem, 2.5vw, 2rem);
     border: 1px solid var(--rule);
   }
   .interactive-wrap .iw-title {
@@ -169,7 +223,7 @@
     margin-bottom: 10px;
   }
   #depth-slider {
-    flex: 1; max-width: 260px;
+    flex: 1; max-width: clamp(200px, 40vw, 480px);
     accent-color: var(--accent);
   }
   #ft-label {
@@ -196,54 +250,63 @@
     font-size: 12px; color: rgba(255,255,255,0.45);
   }
 
-  /* ---- Lure Type Diagram ---- */
-  .lure-diagram {
-    max-width: 720px;
-    margin: 2rem auto 2.5rem;
-    background: var(--paper);
-    border-radius: 8px;
-    padding: 1.5rem;
+  /* ---- Lure Dropdown ---- */
+  .lure-dropdown {
+    margin: -0.4rem 0 1.6rem;
     border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--paper);
   }
-  .lure-diagram .iw-title {
+  .lure-dropdown summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 0.55rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
+    font-size: 0.63rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 1rem;
+    user-select: none;
+    transition: color 0.2s ease;
   }
-  .lure-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 16px;
+  .lure-dropdown summary::-webkit-details-marker { display: none; }
+  .lure-dropdown summary::before {
+    content: '▶';
+    font-size: 0.5rem;
+    color: var(--accent);
+    transition: transform 0.22s ease;
+    flex-shrink: 0;
   }
-  .lure-card {
-    text-align: center;
-    background: var(--cream);
-    border-radius: 6px;
-    padding: 14px 10px 12px;
-    border: 1px solid var(--rule);
+  .lure-dropdown[open] summary::before {
+    transform: rotate(90deg);
   }
-  .lure-card canvas {
+  .lure-dropdown summary:hover { color: var(--ink); }
+  .lure-dropdown-content {
+    padding: 0.8rem 1rem 1rem;
+    border-top: 1px solid var(--rule);
+  }
+  .lure-dropdown-content canvas {
     display: block;
-    margin: 0 auto 8px;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
   }
-  .lure-card-name {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700; font-size: 0.85rem;
-    color: var(--ink); margin-bottom: 4px;
+  @keyframes dropdownOpen {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
   }
-  .lure-card-desc {
-    font-family: 'Source Serif 4', serif;
-    font-size: 0.68rem; color: var(--muted);
-    line-height: 1.4;
+  .lure-dropdown[open] .lure-dropdown-content {
+    animation: dropdownOpen 0.25s ease forwards;
   }
 
   /* ---- Works Cited ---- */
   .works-cited {
-    max-width: 680px; margin: 0 auto;
-    padding: 2rem 2rem 5rem; background: var(--cream);
+    max-width: clamp(600px, 86vw, 960px); margin: 0 auto;
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 6vw, 6rem); background: var(--cream);
   }
   .works-cited h2 {
     font-family: 'Playfair Display', serif;
@@ -280,16 +343,80 @@
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  @media (max-width: 600px) {
-    .hero { padding: 4rem 1.5rem 3rem; }
-    article { padding: 2rem 1.2rem 3rem; }
-    .works-cited { padding: 2rem 1.2rem 4rem; }
+  @keyframes pageFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  body {
+    animation: pageFadeIn 0.5s ease forwards;
+  }
+
+  /* Scroll-reveal base state */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Smoother button interactions */
+  .iw-btn {
+    transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease, transform 0.15s ease;
+  }
+  .iw-btn:hover {
+    transform: translateY(-1px);
+  }
+  .iw-btn:active {
+    transform: translateY(0);
+  }
+  .iw-btn.active {
+    transform: none;
+  }
+
+  /* Smoother link hover */
+  article a {
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+
+  /* ---- Responsive breakpoints ---- */
+  @media (max-width: 480px) {
+    .hero { padding: 3.5rem 1.2rem 2.5rem; }
+    article { padding: 1.8rem 1.2rem 2.5rem; }
+    .works-cited { padding: 1.5rem 1.2rem 3.5rem; }
+    .pull-quote { margin: 1.8rem 0; padding: 1rem 1.2rem; }
+    .interactive-wrap { margin-left: 0.5rem; margin-right: 0.5rem; padding: 0.9rem; }
+    .iw-btn { font-size: 0.7rem; padding: 4px 9px; }
+  }
+  @media (min-width: 481px) and (max-width: 768px) {
     .pull-quote { margin: 2rem 0; padding: 1.2rem 1.4rem; }
-    .interactive-wrap, .lure-diagram { margin-left: -0.2rem; margin-right: -0.2rem; padding: 1rem; }
+  }
+  @media (min-width: 1200px) {
+    article p { font-size: 1.05rem; line-height: 1.8; }
+    .iw-row { gap: 12px; }
+    .iw-label { min-width: 90px; }
+    .iw-btn { font-size: 0.8rem; padding: 6px 14px; }
+    .iw-info { font-size: 0.84rem; }
+  }
+  @media (min-width: 1600px) {
+    article p { font-size: 1.1rem; }
+    article h2 { font-size: 2rem; }
   }
 </style>
 </head>
 <body>
+
+<nav class="section-nav" id="sectionNav">
+  <div class="section-nav-inner">
+    <a href="#sec-see" data-target="sec-see">How Bass See</a>
+    <a href="#sec-type" data-target="sec-type">Lure Types</a>
+    <a href="#sec-retrieve" data-target="sec-retrieve">Retrieve</a>
+    <a href="#sec-together" data-target="sec-together">Putting It Together</a>
+    <a href="#sec-cited" data-target="sec-cited">Works Cited</a>
+  </div>
+</nav>
 
 <header class="hero">
   <div class="hero-label">An Angler's Field Guide</div>
@@ -307,7 +434,7 @@
 
   <p class="lead">Every angler has stood at the tackle box, stared at rows of lures, and wondered which one to tie on. It feels like guesswork. And for beginners, it often is. But experienced bass anglers know that lure selection follows a logic rooted in how bass sense their environment. Three variables drive almost every good decision: water clarity, lure type, and retrieve techniques. Get those three right, and you give yourself a real chance.</p>
 
-  <h2>How Bass See Your Lure</h2>
+  <h2 id="sec-see">How Bass See Your Lure</h2>
 
   <p>Bass are primarily sight predators. In water with eight or more feet of visibility, bass hunt and feed almost entirely by sight (<a href="https://www.slammingbass.com/bass-fishing-tips/lure-color-vs-water-clarity/" target="_blank" rel="noopener">Slamming Bass</a>). That changes everything about how you choose a lure color.</p>
 
@@ -360,71 +487,71 @@
 
 <article style="padding-top:0;">
 
-  <h2>Choosing the Right Lure Type</h2>
+  <h2 id="sec-type">Choosing the Right Lure Type</h2>
 
   <p>Once you have a color direction, you need to decide what kind of lure to throw. There are dozens of lure categories, but seven cover the vast majority of bass fishing situations: crankbaits, jigs, soft plastics, spinnerbaits, topwaters, jerkbaits, and swimbaits.</p>
 
 </article>
 
-<!-- ============ LURE TYPE DIAGRAMS ============ -->
-<div class="lure-diagram">
-  <div class="iw-title">Essential lure types for bass fishing</div>
-  <div class="lure-grid">
-    <div class="lure-card">
-      <canvas id="lure-crank" width="240" height="180"></canvas>
-      <div class="lure-card-name">Crankbait</div>
-      <div class="lure-card-desc">Hard-bodied search bait with a diving lip. Covers water fast at 2–20 ft.</div>
-    </div>
-    <div class="lure-card">
-      <canvas id="lure-jig" width="240" height="180"></canvas>
-      <div class="lure-card-name">Jig</div>
-      <div class="lure-card-desc">Weighted hook with a skirt. Mimics crawfish in heavy cover and structure.</div>
-    </div>
-    <div class="lure-card">
-      <canvas id="lure-worm" width="240" height="180"></canvas>
-      <div class="lure-card-name">Soft plastic (Texas rig)</div>
-      <div class="lure-card-desc">Flexible worm on a weighted hook. Weedless and versatile in any water.</div>
-    </div>
-    <div class="lure-card">
-      <canvas id="lure-spinner" width="240" height="180"></canvas>
-      <div class="lure-card-name">Spinnerbait</div>
-      <div class="lure-card-desc">Wire-arm lure with spinning blades. Flash and vibration for murky water.</div>
-    </div>
-    <div class="lure-card">
-      <canvas id="lure-topwater" width="240" height="180"></canvas>
-      <div class="lure-card-name">Topwater</div>
-      <div class="lure-card-desc">Fished on the surface. Creates splashing and popping to draw explosive strikes.</div>
-    </div>
-    <div class="lure-card">
-      <canvas id="lure-jerkbait" width="240" height="180"></canvas>
-      <div class="lure-card-name">Jerkbait</div>
-      <div class="lure-card-desc">Slim, suspending minnow. Twitched with pauses to trigger reaction bites.</div>
-    </div>
-    <div class="lure-card">
-      <canvas id="lure-swimbait" width="240" height="180"></canvas>
-      <div class="lure-card-name">Swimbait</div>
-      <div class="lure-card-desc">Realistic baitfish imitation with a paddletail. Natural swimming action.</div>
-    </div>
-  </div>
-</div>
-
 <article style="padding-top:0;">
 
   <p><strong>Crankbaits</strong> are the workhorse search tool. Shallow squarebills cover the banks in two to eight feet of water. Deep-divers reach suspended fish at fifteen to twenty feet. In stained water, choose a crankbait with a rattle. In cold water, slow down and use a tighter wobble (<a href="https://fishingbooker.com/blog/best-largemouth-bass-lures/" target="_blank" rel="noopener">FishingBooker</a>). Crankbaits reward anglers who cover water efficiently.</p>
+  <details class="lure-dropdown">
+    <summary>View crankbait diagram</summary>
+    <div class="lure-dropdown-content">
+      <canvas id="lure-crank" width="240" height="180"></canvas>
+    </div>
+  </details>
 
   <p><strong>Jigs</strong> are arguably the most versatile lure ever made. They mimic crawfish, one of the largemouth bass's preferred food sources (<a href="https://fishingbooker.com/blog/best-largemouth-bass-lures/" target="_blank" rel="noopener">FishingBooker</a>). They can be flipped into heavy cover, dragged across the bottom, or swum through the water column. Jigs work all year, but summer and spring are when they tend to shine most (<a href="https://norrik.com/how-to-select-the-best-largemouth-bass-lure/" target="_blank" rel="noopener">Norrik</a>). They require more patience and feel than other lures, but the trade-off is access to places where bass hide that no crankbait can reach.</p>
+  <details class="lure-dropdown">
+    <summary>View jig diagram</summary>
+    <div class="lure-dropdown-content">
+      <canvas id="lure-jig" width="240" height="180"></canvas>
+    </div>
+  </details>
 
   <p><strong>Soft plastics</strong> are the great equalizer. They work well in a variety of water conditions: clear or muddy, with cover or without (<a href="https://www.takemefishing.org/freshwater-fishing/freshwater-bait-and-lures/bass-fishing-lures/" target="_blank" rel="noopener">Take Me Fishing</a>). The Texas-rigged worm remains one of the most effective bass setups ever developed, particularly in warm water when bass are relating to bottom structure. Green pumpkin is the consensus starting color because it works almost everywhere.</p>
+  <details class="lure-dropdown">
+    <summary>View soft plastic diagram</summary>
+    <div class="lure-dropdown-content">
+      <canvas id="lure-worm" width="240" height="180"></canvas>
+    </div>
+  </details>
 
   <p><strong>Spinnerbaits</strong> are reaction lures built for flash and vibration. They work great in areas with lily pads, stumps, logs, and other hard structure because they are designed to deflect off cover (<a href="https://www.takemefishing.org/freshwater-fishing/freshwater-bait-and-lures/bass-fishing-lures/" target="_blank" rel="noopener">Take Me Fishing</a>). The spinning blade creates both visual attraction and a thumping pressure wave that bass can detect through their lateral line, which matters in low-visibility water where sight alone is not enough.</p>
+  <details class="lure-dropdown">
+    <summary>View spinnerbait diagram</summary>
+    <div class="lure-dropdown-content">
+      <canvas id="lure-spinner" width="240" height="180"></canvas>
+    </div>
+  </details>
 
   <p><strong>Topwater lures</strong> are fished right on the surface and produce some of the most exciting strikes in bass fishing. Poppers use a cupped face to throw water and create a popping sound. Walking baits glide side to side in a zigzag pattern called "walking the dog." Topwaters are most effective in low-light conditions like early morning and late evening, or when bass are actively feeding near the surface (<a href="https://fishingbooker.com/blog/best-largemouth-bass-lures/" target="_blank" rel="noopener">FishingBooker</a>).</p>
+  <details class="lure-dropdown">
+    <summary>View topwater diagram</summary>
+    <div class="lure-dropdown-content">
+      <canvas id="lure-topwater" width="240" height="180"></canvas>
+    </div>
+  </details>
 
   <p><strong>Jerkbaits</strong> are slim, minnow-shaped hard baits with a small lip that gives them a subtle diving action. What makes them special is their ability to suspend at a set depth when you stop reeling. The technique is a rhythmic twitch-pause-twitch with the rod tip, and the pause is where strikes happen. Jerkbaits shine in cooler water when bass are less willing to chase fast-moving lures (<a href="https://bassforecast.com/bass-fishing-retrieval-techniques" target="_blank" rel="noopener">BassForecast</a>).</p>
+  <details class="lure-dropdown">
+    <summary>View jerkbait diagram</summary>
+    <div class="lure-dropdown-content">
+      <canvas id="lure-jerkbait" width="240" height="180"></canvas>
+    </div>
+  </details>
 
   <p><strong>Swimbaits</strong> are designed to look and move like real baitfish. Soft-bodied swimbaits have a paddletail that kicks side to side on a steady retrieve, creating a natural swimming action. They come in a wide range of sizes, from small three-inch models for finesse fishing to large eight-inch versions for targeting trophy bass. Swimbaits work best in clear to slightly stained water where bass are feeding on shad or other baitfish (<a href="https://www.wired2fish.com/hard-baits/types-of-fishing-lures" target="_blank" rel="noopener">Wired2Fish</a>).</p>
+  <details class="lure-dropdown">
+    <summary>View swimbait diagram</summary>
+    <div class="lure-dropdown-content">
+      <canvas id="lure-swimbait" width="240" height="180"></canvas>
+    </div>
+  </details>
 
-  <h2>Retrieve Techniques</h2>
+  <h2 id="sec-retrieve">Retrieve Techniques</h2>
 
   <p>You can have the right color and the right lure and still catch nothing because of how you work it. Retrieve is the most overlooked variable for beginners, and often the most important one once the fundamentals are in place.</p>
 
@@ -436,7 +563,7 @@
 
   <p>The most successful anglers do not get stuck on one retrieve. They adapt throughout the day, responding to how fish are behaving and where they are holding (<a href="https://www.sportfishingmag.com/how-to-retrieve-fishing-lures/" target="_blank" rel="noopener">Sport Fishing Magazine</a>). If the fish are telling you something is not working, change one variable at a time. Slow down first. Then adjust the pause. Then change the lure. That systematic approach teaches you the water faster than randomly switching lures ever will.</p>
 
-  <h2>Putting It Together</h2>
+  <h2 id="sec-together">Putting It Together</h2>
 
   <p>Lure selection starts to feel intuitive once you understand what each decision is actually doing. Color talks to visibility. Lure type talks to depth, cover, and forage. Retrieve talks to fish mood and activity level. None of these decisions exist in isolation.</p>
 
@@ -448,7 +575,7 @@
 
 </article>
 
-<section class="works-cited">
+<section class="works-cited" id="sec-cited">
   <h2>Works Cited</h2>
   <ul>
     <li>Bourne, Wade. "A Simple Guide to Choosing Lure Colors for Bass." <em>Bass Pro Shops 1Source</em>, 24 Apr. 2018, <a href="https://1source.basspro.com/news-tips/fishing-tackle/7368/simple-guide-choosing-lure-colors-bass" target="_blank" rel="noopener">1source.basspro.com</a>.</li>
@@ -468,7 +595,48 @@
 </section>
 </div>
 
-<footer>Reading the Water &middot; A Bass Angler's Guide</footer>
+<footer class="reveal">Reading the Water &middot; A Bass Angler's Guide</footer>
+
+<script>
+// ===== SECTION NAV ACTIVE STATE =====
+(function(){
+  const links = document.querySelectorAll('.section-nav a[data-target]');
+  const targets = Array.from(links).map(function(a){
+    return { link: a, el: document.getElementById(a.dataset.target) };
+  }).filter(function(t){ return t.el; });
+  if(!targets.length) return;
+
+  const navObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      const id = entry.target.id;
+      if(entry.isIntersecting){
+        links.forEach(function(l){ l.classList.toggle('active', l.dataset.target === id); });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+  targets.forEach(function(t){ navObserver.observe(t.el); });
+})();
+
+// ===== SCROLL REVEAL =====
+(function(){
+  const observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  // Reveal article paragraphs, headings, pull-quotes, interactive blocks, dropdowns, footer
+  document.querySelectorAll('article p, article h2, .pull-quote, .interactive-wrap, .lure-dropdown, .works-cited, footer.reveal').forEach(function(el){
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+})();
+</script>
 
 <script>
 // ===== LURE DEPTH SIMULATOR =====
@@ -479,7 +647,7 @@
   let W, H;
   function sz(){
     const r = cv.parentElement.getBoundingClientRect();
-    W = r.width; H = Math.min(520, Math.max(380, W*0.7));
+    W = r.width; H = Math.min(680, Math.max(320, W*0.55));
     cv.width = W*DPR; cv.height = H*DPR;
     cv.style.height = H+'px';
     cx.setTransform(DPR,0,0,DPR,0,0);
@@ -703,7 +871,8 @@
     const w = cv.width, h = cv.height;
     cv.style.width = '100%';
     cv.style.height = 'auto';
-    const scale = DPR;
+    // Render at 3× logical size so canvases stay sharp when CSS-stretched across wider containers
+    const scale = Math.max(DPR, 1) * 3;
     cv.width = w * scale;
     cv.height = h * scale;
     cx.scale(scale, scale);
