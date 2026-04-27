@@ -121,6 +121,41 @@
   }
   html { scroll-padding-top: 64px; }
 
+  /* ---- Back to top ---- */
+  .back-to-top {
+    position: fixed;
+    right: clamp(1rem, 3vw, 2rem);
+    bottom: clamp(1rem, 3vw, 2rem);
+    z-index: 60;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: rgba(244, 240, 232, 0.92);
+    backdrop-filter: saturate(140%) blur(10px);
+    -webkit-backdrop-filter: saturate(140%) blur(10px);
+    color: var(--accent);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .back-to-top:hover {
+    background: var(--accent);
+    color: var(--paper);
+    border-color: var(--accent);
+  }
+
   .wave-divider { display: block; width: 100%; height: 40px; margin: 0; }
   .wave-divider path { fill: var(--cream); }
   .article-wrap { background: var(--cream); }
@@ -563,6 +598,32 @@
 
   <p>The most successful anglers do not get stuck on one retrieve. They adapt throughout the day, responding to how fish are behaving and where they are holding (<a href="https://www.sportfishingmag.com/how-to-retrieve-fishing-lures/" target="_blank" rel="noopener">Sport Fishing Magazine</a>). If the fish are telling you something is not working, change one variable at a time. Slow down first. Then adjust the pause. Then change the lure. That systematic approach teaches you the water faster than randomly switching lures ever will.</p>
 
+</article>
+
+<!-- ============ RETRIEVE SIMULATOR ============ -->
+<div class="interactive-wrap">
+  <div class="iw-title">Interactive &mdash; Retrieve simulator</div>
+  <div class="iw-row">
+    <span class="iw-label">Technique</span>
+    <button class="iw-btn active" data-tech="manual">Manual</button>
+    <button class="iw-btn" data-tech="straight">Straight</button>
+    <button class="iw-btn" data-tech="stopgo">Stop-and-go</button>
+    <button class="iw-btn" data-tech="liftdrop">Lift-and-drop</button>
+    <button class="iw-btn" data-tech="twitch">Twitch</button>
+  </div>
+  <div class="iw-info" id="rs-info"></div>
+  <canvas id="retrieve-cv" style="width:100%; border-radius:6px; display:block; background:#0e2230;"></canvas>
+  <div class="iw-row" style="margin-top: 12px; justify-content: center; gap: 6px;">
+    <button class="iw-btn" id="rs-reel" title="Click to start/stop reeling">⟲ Reel</button>
+    <button class="iw-btn" id="rs-rodup" title="Click to lift rod">↑ Rod up</button>
+    <button class="iw-btn" id="rs-roddown" title="Click to drop rod">↓ Rod down</button>
+    <button class="iw-btn" id="rs-twitch-btn" title="Quick twitch">⚡ Twitch</button>
+    <button class="iw-btn" id="rs-reset">Cast again</button>
+  </div>
+</div>
+
+<article style="padding-top:0;">
+
   <h2 id="sec-together">Putting It Together</h2>
 
   <p>Lure selection starts to feel intuitive once you understand what each decision is actually doing. Color talks to visibility. Lure type talks to depth, cover, and forage. Retrieve talks to fish mood and activity level. None of these decisions exist in isolation.</p>
@@ -595,27 +656,60 @@
 </section>
 </div>
 
+<button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
+
 <footer class="reveal">Reading the Water &middot; A Bass Angler's Guide</footer>
 
 <script>
+// ===== BACK TO TOP =====
+(function(){
+  const btn = document.getElementById('backToTop');
+  if(!btn) return;
+  let raf = 0;
+  function update(){
+    btn.classList.toggle('visible', window.scrollY > 400);
+  }
+  function onScroll(){
+    if(raf) return;
+    raf = requestAnimationFrame(function(){ raf = 0; update(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  btn.addEventListener('click', function(){
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  update();
+})();
+
 // ===== SECTION NAV ACTIVE STATE =====
 (function(){
-  const links = document.querySelectorAll('.section-nav a[data-target]');
-  const targets = Array.from(links).map(function(a){
-    return { link: a, el: document.getElementById(a.dataset.target) };
+  const links = Array.from(document.querySelectorAll('.section-nav a[data-target]'));
+  const targets = links.map(function(a){
+    return { link: a, id: a.dataset.target, el: document.getElementById(a.dataset.target) };
   }).filter(function(t){ return t.el; });
   if(!targets.length) return;
 
-  const navObserver = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      const id = entry.target.id;
-      if(entry.isIntersecting){
-        links.forEach(function(l){ l.classList.toggle('active', l.dataset.target === id); });
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  function update(){
+    const triggerY = 120; // px from top of viewport
+    let activeId = targets[0].id;
+    for(const t of targets){
+      const top = t.el.getBoundingClientRect().top;
+      if(top - triggerY <= 0) activeId = t.id;
+    }
+    // If at very bottom of page, force last
+    if(window.innerHeight + window.scrollY >= document.body.scrollHeight - 4){
+      activeId = targets[targets.length - 1].id;
+    }
+    links.forEach(function(l){ l.classList.toggle('active', l.dataset.target === activeId); });
+  }
 
-  targets.forEach(function(t){ navObserver.observe(t.el); });
+  let raf = 0;
+  function onScroll(){
+    if(raf) return;
+    raf = requestAnimationFrame(function(){ raf = 0; update(); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  update();
 })();
 
 // ===== SCROLL REVEAL =====
@@ -1464,6 +1558,293 @@
 
     drawLabel(cx, bx, h-4, 'Depth: 1–15 ft  ·  Retrieve: steady swim');
   })();
+})();
+
+// ===== RETRIEVE SIMULATOR =====
+(function(){
+  const cv = document.getElementById('retrieve-cv');
+  if(!cv) return;
+  const cx = cv.getContext('2d');
+  const DPR = window.devicePixelRatio || 1;
+  let W, H, rodTipX, baseRodY, rodTipY, waterSurface;
+  const lure = {x:0, y:0, vx:0, vy:0};
+  let lineLength = 0;
+  let trail = [];
+  let isReeling = false;
+  let rodMove = 0;
+  let technique = 'manual';
+  let autoTimer = 0;
+
+  function sz(){
+    const r = cv.parentElement.getBoundingClientRect();
+    W = r.width;
+    H = Math.min(440, Math.max(300, W * 0.46));
+    cv.width = W*DPR; cv.height = H*DPR;
+    cv.style.height = H+'px';
+    cx.setTransform(DPR,0,0,DPR,0,0);
+    rodTipX = W * 0.86;
+    waterSurface = H * 0.32;
+    baseRodY = H * 0.14;
+  }
+  function castLure(){
+    sz();
+    rodTipY = baseRodY;
+    lure.x = W * 0.16;
+    lure.y = H * 0.7;
+    lure.vx = 0; lure.vy = 0;
+    lineLength = Math.hypot(lure.x - rodTipX, lure.y - rodTipY);
+    trail = [];
+  }
+  castLure();
+
+  function update(dt){
+    if(technique !== 'manual') runAuto();
+    autoTimer += dt;
+
+    // Gravity (sink)
+    lure.vy += 70 * dt;
+    // Water drag
+    const drag = Math.pow(0.90, dt * 60);
+    lure.vx *= drag; lure.vy *= drag;
+    // Move
+    lure.x += lure.vx * dt;
+    lure.y += lure.vy * dt;
+
+    // Reel: shorten line
+    if(isReeling) lineLength = Math.max(45, lineLength - 35 * dt);
+
+    // Rod movement (rod tip stays above water)
+    const rodMin = H * 0.04;
+    const rodMax = waterSurface - 12;
+    if(rodMove !== 0){
+      rodTipY += rodMove * 110 * dt;
+      rodTipY = Math.max(rodMin, Math.min(rodMax, rodTipY));
+    } else if(technique === 'manual'){
+      // stay where the user left it
+    } else {
+      rodTipY += (baseRodY - rodTipY) * Math.min(1, dt * 2.5);
+    }
+
+    // Line constraint
+    const dx = lure.x - rodTipX;
+    const dy = lure.y - rodTipY;
+    const dist = Math.hypot(dx, dy);
+    if(dist > lineLength){
+      const nx = dx / dist, ny = dy / dist;
+      const corr = dist - lineLength;
+      lure.x -= nx * corr;
+      lure.y -= ny * corr;
+      const radial = lure.vx * nx + lure.vy * ny;
+      if(radial > 0){
+        lure.vx -= radial * nx;
+        lure.vy -= radial * ny;
+      }
+      // Pulled by line — give a small velocity toward rod when actively reeling
+      if(isReeling){
+        lure.vx -= nx * 30 * dt * 60 * 0.05;
+        lure.vy -= ny * 30 * dt * 60 * 0.05;
+      }
+    }
+
+    // Boundaries
+    if(lure.y < waterSurface + 6){ lure.y = waterSurface + 6; if(lure.vy < 0) lure.vy = 0; }
+    if(lure.y > H * 0.93){ lure.y = H * 0.93; if(lure.vy > 0) lure.vy *= -0.2; }
+    if(lure.x < 12){ lure.x = 12; lure.vx = 0; }
+
+    // Trail
+    trail.push({x: lure.x, y: lure.y, age: 0});
+    for(const t of trail) t.age += dt;
+    trail = trail.filter(t => t.age < 1.6);
+  }
+
+  function runAuto(){
+    const t = autoTimer;
+    if(technique === 'straight'){
+      isReeling = true; rodMove = 0;
+    } else if(technique === 'stopgo'){
+      const c = t % 2.4;
+      isReeling = c < 1.3; rodMove = 0;
+    } else if(technique === 'liftdrop'){
+      const c = t % 2.6;
+      if(c < 0.9){ rodMove = -1; isReeling = false; }
+      else if(c < 1.1){ rodMove = 0; isReeling = false; }
+      else if(c < 2.0){ rodMove = 1; isReeling = c > 1.6; }
+      else { rodMove = 0; isReeling = true; }
+    } else if(technique === 'twitch'){
+      const c = t % 1.4;
+      if(c < 0.08) rodMove = -3;
+      else if(c < 0.16) rodMove = 3;
+      else rodMove = 0;
+      isReeling = c > 0.35 && c < 0.6;
+    }
+  }
+
+  function draw(){
+    cx.clearRect(0, 0, W, H);
+    // Sky
+    const skyG = cx.createLinearGradient(0, 0, 0, waterSurface);
+    skyG.addColorStop(0, '#aebec9'); skyG.addColorStop(1, '#c5d2da');
+    cx.fillStyle = skyG; cx.fillRect(0, 0, W, waterSurface);
+    // Water
+    const wG = cx.createLinearGradient(0, waterSurface, 0, H);
+    wG.addColorStop(0, '#3a6b85'); wG.addColorStop(1, '#0e2230');
+    cx.fillStyle = wG; cx.fillRect(0, waterSurface, W, H - waterSurface);
+    // Surface line
+    cx.strokeStyle = 'rgba(255,255,255,0.45)'; cx.lineWidth = 1;
+    cx.beginPath(); cx.moveTo(0, waterSurface); cx.lineTo(W, waterSurface); cx.stroke();
+    // Surface ripples
+    cx.strokeStyle = 'rgba(255,255,255,0.25)'; cx.lineWidth = 0.7;
+    const phase = (Date.now() / 50) % 60;
+    for(let i = -1; i < W/60 + 1; i++){
+      const rx = i * 60 + phase;
+      cx.beginPath();
+      cx.moveTo(rx, waterSurface);
+      cx.bezierCurveTo(rx+15, waterSurface-1.5, rx+30, waterSurface+1.5, rx+45, waterSurface);
+      cx.stroke();
+    }
+    // Bottom
+    cx.fillStyle = 'rgba(40,28,18,0.7)';
+    cx.fillRect(0, H * 0.93, W, H * 0.07);
+
+    // Trail
+    for(const t of trail){
+      const a = (1 - t.age / 1.6) * 0.5;
+      cx.beginPath(); cx.arc(t.x, t.y, 2.2, 0, Math.PI*2);
+      cx.fillStyle = `rgba(255, 215, 130, ${a.toFixed(3)})`; cx.fill();
+    }
+
+    // Rod — handle stays above water (off canvas upper-right, tip extends left/down)
+    const handleX = W + 40, handleY = -25;
+    cx.lineCap = 'round';
+    cx.strokeStyle = '#3a2418'; cx.lineWidth = 6;
+    cx.beginPath(); cx.moveTo(handleX, handleY); cx.lineTo(rodTipX, rodTipY); cx.stroke();
+    cx.strokeStyle = '#6a4828'; cx.lineWidth = 2.5;
+    cx.beginPath(); cx.moveTo(handleX, handleY); cx.lineTo(rodTipX, rodTipY); cx.stroke();
+    cx.beginPath(); cx.arc(rodTipX, rodTipY, 3, 0, Math.PI*2); cx.fillStyle = '#222'; cx.fill();
+
+    // Line
+    const dx = lure.x - rodTipX, dy = lure.y - rodTipY;
+    const dist = Math.hypot(dx, dy);
+    const slack = Math.max(0, lineLength - dist);
+    cx.strokeStyle = 'rgba(230, 230, 230, 0.75)'; cx.lineWidth = 0.9;
+    cx.beginPath(); cx.moveTo(rodTipX, rodTipY);
+    if(slack > 6){
+      const midX = (rodTipX + lure.x) / 2;
+      const midY = (rodTipY + lure.y) / 2 + Math.min(60, slack * 0.7);
+      cx.quadraticCurveTo(midX, midY, lure.x, lure.y);
+    } else {
+      cx.lineTo(lure.x, lure.y);
+    }
+    cx.stroke();
+
+    // Lure (small fish shape)
+    cx.save();
+    cx.translate(lure.x, lure.y);
+    const v = Math.hypot(lure.vx, lure.vy);
+    let ang = 0;
+    if(v > 5){ ang = Math.atan2(lure.vy, lure.vx); }
+    cx.rotate(ang);
+    // Body
+    cx.beginPath(); cx.ellipse(0, 0, 12, 5.5, 0, 0, Math.PI*2);
+    cx.fillStyle = '#d8e045'; cx.fill();
+    cx.strokeStyle = '#7a8520'; cx.lineWidth = 1; cx.stroke();
+    // Tail
+    cx.beginPath(); cx.moveTo(-11, 0); cx.lineTo(-17, -5); cx.lineTo(-17, 5); cx.closePath();
+    cx.fillStyle = '#7a8520'; cx.fill();
+    // Eye
+    cx.beginPath(); cx.arc(7, -1.2, 1.6, 0, Math.PI*2); cx.fillStyle = '#fff'; cx.fill();
+    cx.beginPath(); cx.arc(7.4, -1.2, 0.9, 0, Math.PI*2); cx.fillStyle = '#000'; cx.fill();
+    // Hook
+    cx.strokeStyle = 'rgba(180,180,180,0.9)'; cx.lineWidth = 0.8;
+    cx.beginPath(); cx.moveTo(-12, 4); cx.bezierCurveTo(-15, 9, -10, 11, -8, 7); cx.stroke();
+    cx.restore();
+
+    // Tension label
+    cx.font = '9px "JetBrains Mono", monospace'; cx.textAlign = 'right';
+    if(slack <= 6){
+      cx.fillStyle = 'rgba(220, 110, 70, 0.95)';
+      cx.fillText('LINE TIGHT', W - 10, H - 10);
+    } else {
+      cx.fillStyle = 'rgba(200, 200, 200, 0.7)';
+      cx.fillText('LINE SLACK', W - 10, H - 10);
+    }
+    cx.textAlign = 'left';
+    cx.fillStyle = 'rgba(255,255,255,0.55)';
+    cx.fillText(technique.toUpperCase() + (isReeling ? ' · REELING' : ''), 10, H - 10);
+  }
+
+  let last = performance.now();
+  function loop(now){
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    update(dt);
+    draw();
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  // Click-to-toggle buttons
+  function toggle(id, isOn, setOn){
+    const b = document.getElementById(id);
+    if(!b) return;
+    b.addEventListener('click', () => {
+      const next = !isOn();
+      setOn(next);
+      b.classList.toggle('active', next);
+    });
+  }
+  toggle('rs-reel', () => isReeling, v => isReeling = v);
+  // Rod up/down are mutually exclusive toggles
+  const rodUpBtn = document.getElementById('rs-rodup');
+  const rodDownBtn = document.getElementById('rs-roddown');
+  if(rodUpBtn) rodUpBtn.addEventListener('click', () => {
+    rodMove = (rodMove === -1) ? 0 : -1;
+    rodUpBtn.classList.toggle('active', rodMove === -1);
+    rodDownBtn.classList.remove('active');
+  });
+  if(rodDownBtn) rodDownBtn.addEventListener('click', () => {
+    rodMove = (rodMove === 1) ? 0 : 1;
+    rodDownBtn.classList.toggle('active', rodMove === 1);
+    rodUpBtn.classList.remove('active');
+  });
+
+  document.getElementById('rs-twitch-btn').addEventListener('click', () => {
+    rodMove = -3;
+    setTimeout(() => { rodMove = 3; }, 70);
+    setTimeout(() => { if(technique === 'manual') rodMove = 0; }, 150);
+  });
+  document.getElementById('rs-reset').addEventListener('click', castLure);
+
+  document.querySelectorAll('[data-tech]').forEach(b => b.addEventListener('click', function(){
+    technique = this.dataset.tech;
+    document.querySelectorAll('[data-tech]').forEach(x => x.classList.remove('active'));
+    this.classList.add('active');
+    autoTimer = 0;
+    isReeling = false; rodMove = 0;
+    document.getElementById('rs-reel').classList.remove('active');
+    document.getElementById('rs-rodup').classList.remove('active');
+    document.getElementById('rs-roddown').classList.remove('active');
+    setInfo();
+  }));
+
+  function setInfo(){
+    const info = document.getElementById('rs-info');
+    const m = {
+      manual: 'Manual mode — hold the buttons below to reel and move the rod. Watch how line tension and slack change the lure path.',
+      straight: 'Straight retrieve — constant reeling, no rod motion. The lure tracks in a smooth line. Best for crankbaits and spinnerbaits.',
+      stopgo: 'Stop-and-go — reel, pause, reel. The lure dips on each pause as gravity takes over. Great for triggering followers into striking.',
+      liftdrop: 'Lift-and-drop — raise the rod to lift the lure, drop it to let it fall. Most strikes happen on the fall, on slack line.',
+      twitch: 'Twitch — short, sharp rod jerks with intermittent reeling. The erratic motion mimics a wounded baitfish and provokes reaction strikes.'
+    };
+    info.textContent = m[technique];
+  }
+  setInfo();
+
+  window.addEventListener('resize', () => {
+    const lx = lure.x / W, ly = lure.y / H;
+    sz();
+    lure.x = lx * W; lure.y = ly * H;
+  });
 })();
 </script>
 
